@@ -1,0 +1,34 @@
+.navbar-wrapper {
+    .navbar {
+        .options {
+            background-color: #000;
+            list-style: none;
+            margin: 0;
+            padding: 24px 32px;
+            padding-top: 48px;
+            & > li > a {
+                color: #fff !important;
+                text-decoration: none;
+                &:visited {
+                    color: inherit;
+                }
+            }
+            & > li:not(:last-child) {
+                display: inline-block;
+                font-size: 1.25rem;
+                margin-right: 1.5rem;
+            }
+        }
+        .search-bar {
+            border: 1px solid grey;
+            border-radius: 100px;
+            display: inline-block;
+            font-size: 0.8rem;
+            margin-right: 32px;
+            padding: 6px 12px;
+            position: absolute;
+            right: 0;
+            top: 48px;
+        }
+    }
+}
