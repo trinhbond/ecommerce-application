@@ -17,11 +17,9 @@ export const Navbar = () => {
                     <Link to='/pages/contact'>Contact</Link>
                 </li>
                 <li>
-                <input className='search-bar' type='text' placeholder='Search...' />
-
+                    <input className='search-bar' type='text' placeholder='Search...' />
                 </li>
             </ul>
-
         </nav>
     </div>
   )
