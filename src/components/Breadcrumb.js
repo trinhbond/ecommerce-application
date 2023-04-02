@@ -6,7 +6,8 @@ export const Breadcrumb = () => {
     const location = useLocation();
     return (
         <div className='breadcrumb'>
-            <span>{location.pathname}</span>
+            <span>{location.pathname.replace(" ").substring(1)}</span>
+            {location.pathname === '/' && <span>Home</span>}
             <hr />
         </div>
     )

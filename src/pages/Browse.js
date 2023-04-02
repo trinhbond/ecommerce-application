@@ -1,7 +1,10 @@
 import React from 'react'
+import { Product } from "../components/Components"
 
 export const Browse = () => {
   return (
-    <div>Browse</div>
+    <div>
+      <Product />
+    </div>
   )
 }
