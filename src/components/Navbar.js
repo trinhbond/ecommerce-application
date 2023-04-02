@@ -1,6 +1,6 @@
 import React from 'react'
 import '../scss/navbar.scss'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 export const Navbar = () => {
     return ( 
@@ -8,13 +8,41 @@ export const Navbar = () => {
         <nav className='navbar'>
             <ul className='options'>
                 <li>
-                    <Link to='/'>Home</Link>
+                    <NavLink 
+                        to='/'
+                        className={({ isActive, isPending }) =>
+                            isPending ? "pending" : isActive ? "active" : ""
+                        }
+                    >
+                        Home
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to='/pages/browse'>Browse</Link>
+                    <NavLink to='/pages/browse'
+                        className={({ isActive, isPending }) =>
+                            isPending ? "pending" : isActive ? "active" : ""
+                        }
+                    >
+                        Browse
+                </NavLink>
                 </li>
                 <li>
-                    <Link to='/pages/contact'>Contact</Link>
+                    <NavLink to='/pages/company'                        
+                        className={({ isActive, isPending }) =>
+                            isPending ? "pending" : isActive ? "active" : ""
+                        }
+                    >
+                        Company
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to='/pages/contact'
+                        className={({ isActive, isPending }) =>
+                            isPending ? "pending" : isActive ? "active" : ""
+                        }
+                    >
+                        Contact
+                    </NavLink>
                 </li>
                 <li>
                     <input className='search-bar' type='text' placeholder='Search...' />
