@@ -22,16 +22,16 @@ export default function Product() {
                     />
                 </div>
                 <h1>
-                    {product.name ? <>{product.name}</> : <>N/A</>}
+                    {product.name ? <>{product.name}</> : <>N&#47;A</>}
                 </h1>
                 <span>
-                    {product.price ? <>{product.price} </> : <>N/A</>}
+                    {product.price ? <>{product.price} </> : <>N&#47;A</>}
                 </span>
                 <span>
-                    {product.size ? <>{product.size}</> : <>N/A</>}
+                    {product.size ? <>{product.size}</> : <>N&#47;A</>}
                 </span>
                 <p>
-                    {product.description ? <>{product.description}</> : <>N/A</>}
+                    {product.description ? <>{product.description}</> : <>N&#47;A</>}
                 </p>
             </div>
         </div>
