@@ -1,7 +1,6 @@
 import { Navbar, Breadcrumb } from './components/Components';
-import { Routes, Route } from 'react-router-dom'
-import { Contact, Products, Home, Company } from './pages/Pages'
-import NotFound from './pages/NotFound';
+import { Contact, Products, Home, Company, NotFound } from './pages/Pages';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   return (

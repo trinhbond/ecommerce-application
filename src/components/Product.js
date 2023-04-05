@@ -1,5 +1,5 @@
-import React from 'react'
-import '../scss/product.scss'
+import React from 'react';
+import '../scss/product.scss';
 
 export default function Product() {
     const product = {
@@ -11,7 +11,7 @@ export default function Product() {
     };
 
     return (
-        <div className='product'>
+        <div className='productmjfv'>
             <div className='image'>
                 <img
                     key={product.img} 
