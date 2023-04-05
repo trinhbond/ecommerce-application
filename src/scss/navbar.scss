@@ -1,6 +1,7 @@
 .navbar-wrapper {
     .navbar {
         white-space: nowrap;
+
         .options {
             background-color: #000;
             list-style: none;
@@ -8,9 +9,11 @@
             padding: 24px 120px;
             padding-top: 48px;
             font-weight: 600;
+
             & > li > a {
                 color: #fff !important;
                 text-decoration: none;
+
                 &:visited {
                     color: inherit;
                 }
@@ -25,11 +28,13 @@
             }
             li:last-child {
                 float: right;
+
                 .search-bar {
                     border: 1px solid grey;
                     border-radius: 100px;
                     font-size: 0.8rem;
                     padding: 6px 12px;
+                    
                     @media only screen and (max-width: 826px) {
                         display: none;
                     }

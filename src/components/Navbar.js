@@ -18,7 +18,8 @@ export const Navbar = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/pages/products'
+                    <NavLink 
+                        to='/pages/products'
                         className={({ isActive, isPending }) =>
                             isPending ? "pending" : isActive ? "active" : ""
                         }
@@ -27,7 +28,8 @@ export const Navbar = () => {
                 </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/pages/company'                        
+                    <NavLink 
+                        to='/pages/company'                        
                         className={({ isActive, isPending }) =>
                             isPending ? "pending" : isActive ? "active" : ""
                         }
@@ -36,7 +38,8 @@ export const Navbar = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/pages/contact'
+                    <NavLink 
+                        to='/pages/contact'
                         className={({ isActive, isPending }) =>
                             isPending ? "pending" : isActive ? "active" : ""
                         }
