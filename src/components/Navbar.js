@@ -18,12 +18,12 @@ export const Navbar = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/pages/browse'
+                    <NavLink to='/pages/products'
                         className={({ isActive, isPending }) =>
                             isPending ? "pending" : isActive ? "active" : ""
                         }
                     >
-                        Browse
+                        Products
                 </NavLink>
                 </li>
                 <li>

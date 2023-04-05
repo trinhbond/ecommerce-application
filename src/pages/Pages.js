@@ -1,13 +1,7 @@
-import { Browse } from './Browse'
+import { Products } from './Products'
 import { Contact } from './Contact'
 import { Home } from './Home'
 import { Company } from './Company'
 import NotFound from './NotFound'
 
-export {
-    Browse,
-    Contact,
-    Home,
-    NotFound,
-    Company
-}
+export { Products, Contact, Home, NotFound, Company }

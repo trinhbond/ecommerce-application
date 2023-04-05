@@ -5,7 +5,7 @@ export default function Product() {
     const product = {
         name: 'Product',
         price: '$20.00',
-        img: '/product.jpg',
+        img: '../assets/images/product.jpg',
         size: 'Large',
         description: 'Description of product',
     };
@@ -13,9 +13,10 @@ export default function Product() {
     return (
         <div className='product'>
             <div className='image'>
-                <img 
+                <img
                     key={product.img} 
-                    src={product.img || null}
+                    src={require('../assets/images/product.jpg') || null}
+                    // src={product.img || null}
                     alt={product.name}
                     width={200}
                 />
