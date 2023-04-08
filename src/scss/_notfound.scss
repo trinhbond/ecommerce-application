@@ -1,0 +1,20 @@
+.not-found {
+  text-align: center;
+
+  h1 {
+    font-size: 4rem;
+    margin: 0;
+  }
+  a {
+    background-color: black;
+    border-radius: 100px;
+    color: white;
+    display: inline-block;
+    font-weight: bold;
+    height: auto;
+    line-height: 1.4rem;
+    padding: 0px 16px;
+    text-decoration: none;
+    vertical-align: middle;
+  }
+}
