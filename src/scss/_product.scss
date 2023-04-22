@@ -2,6 +2,7 @@
   border-radius: 4px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 100%;
+  margin: 1rem;
   transition: 0.3s;
   width: 250px;
 
@@ -26,8 +27,6 @@
     }
   }
   .product-card-body {
-    border-top: 1px solid gray;
-
     p {
       margin-bottom: 0;
       color: #757475;

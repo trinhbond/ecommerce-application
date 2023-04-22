@@ -1,13 +1,12 @@
-import React from 'react';
-import '../scss/_notfound.scss';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-export default function NotFound() {
+export const NotFound = () => {
   return (
-    <div className='not-found'>
-        <h1>Page not found</h1>
-        <p>The page you are looking for doesn't exist</p>
-        Back to <Link to='/'>Home</Link>
+    <div className="not-found">
+      <h1>Page not found</h1>
+      <p>The page you are looking for doesn't exist</p>
+      Back to <Link to="/">Home</Link>
     </div>
-  )
-}
+  );
+};

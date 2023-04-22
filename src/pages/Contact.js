@@ -1,5 +1,4 @@
 import React from "react";
-import "../scss/_contact.scss";
 
 export const Contact = () => {
   return (
@@ -14,7 +13,7 @@ export const Contact = () => {
           <input type="text" placeholder="" />
           <label>Your message</label>
           <textarea placeholder="Your message" />
-          <input type="submit" value="Submit" />
+          <input className="button submit" type="submit" value="Submit" />
         </form>
       </div>
       <div className="aside">

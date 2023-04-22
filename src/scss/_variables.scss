@@ -1,14 +1,26 @@
 $black: #000;
 $white: #fff;
+$rounded: 100px;
 
-$error: #bd1010;
-$success: #4ea216;
-
-.button {
-  border-radius: 100px;
+.button,
+a.button,
+button,
+input[type="submit"] {
+  border-radius: $rounded !important;
   border: none;
   background-color: $black;
   color: $white;
   font-weight: 600;
   padding: 8px 24px;
+}
+
+.breadcrumb {
+  padding: 48px 120px;
+  padding-bottom: 24px;
+  text-align: end;
+
+  span {
+    color: #727e82;
+    vertical-align: middle;
+  }
 }
