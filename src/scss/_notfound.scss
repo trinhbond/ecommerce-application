@@ -3,17 +3,17 @@
   text-align: center;
 
   h1 {
-    font-size: 4rem;
+    font-size: 12rem;
     margin: 0;
   }
 
   p {
-    margin: 0 0 25px 0;
+    margin: -20px 0 25px 0;
   }
 
   .button {
     &:after {
-      content: '>';
+      content: ">";
       position: relative;
       left: 8px;
     }

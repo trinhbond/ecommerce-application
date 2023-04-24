@@ -1,15 +1,20 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import { routes } from "../Routes";
 
 export const Breadcrumb = () => {
   const location = useLocation();
-  const routes = ["/pages/company", "/pages/contact", "/", "/pages/products"];
 
   return (
     <div className="breadcrumb">
-      <span>
-        {location.pathname === "/" ? <>Home</> : routes.includes(location.pathname) ? location.pathname : <></>}
-      </span>
+      {routes.map((route, key) => {
+        return (
+          <span key={key}>
+            {location.pathname.includes(route.path) &&
+              route.title.concat(" / ")}
+          </span>
+        );
+      })}
       <hr />
     </div>
   );
