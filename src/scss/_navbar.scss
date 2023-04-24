@@ -1,43 +1,41 @@
-.navbar-wrapper {
-  .navbar {
-    white-space: nowrap;
+nav {
+  display: block;
+  white-space: nowrap;
 
-    .options {
-      background-color: $black;
-      list-style: none;
-      margin: 0;
-      padding: 24px 120px;
-      padding-top: 48px;
-      font-weight: 600;
+  ul {
+    background-color: $black;
+    font-weight: 600;
+    list-style: none;
+    margin: 0;
+    padding: 48px 120px 24px 120px;
 
-      & > li > a {
-        color: $white !important;
-        text-decoration: none;
+    & > li > a {
+      color: $white !important;
+      text-decoration: none;
 
-        &:visited {
-          color: inherit;
-        }
-        &.active {
-          border-bottom: 1px solid $white;
-        }
+      &:visited {
+        color: inherit;
       }
-      & > li:not(:last-child) {
-        display: inline-block;
-        font-size: 1rem;
-        margin-right: 2rem;
+      &.active {
+        border-bottom: 1px solid $white;
       }
-      li:last-child {
-        float: right;
+    }
+    & > li:not(:last-child) {
+      display: inline-block;
+      font-size: 1rem;
+      margin-right: 2rem;
+    }
+    li:last-child {
+      float: right;
 
-        .search-bar {
-          border: 1px solid grey;
-          border-radius: $rounded;
-          font-size: 0.8rem;
-          padding: 6px 12px;
+      .search-bar {
+        border: 1px solid grey;
+        border-radius: $rounded;
+        font-size: 0.8rem;
+        padding: 6px 12px;
 
-          @media only screen and (max-width: 826px) {
-            display: none;
-          }
+        @media only screen and (max-width: 826px) {
+          display: none;
         }
       }
     }
