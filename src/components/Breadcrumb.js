@@ -10,8 +10,7 @@ export const Breadcrumb = () => {
       {routes.map((route, key) => {
         return (
           <span key={key}>
-            {location.pathname.includes(route.path) &&
-              route.title.concat(" / ")}
+            {location.pathname.includes(route.path) && route.title}
           </span>
         );
       })}
