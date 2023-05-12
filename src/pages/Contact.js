@@ -8,9 +8,9 @@ export const Contact = () => {
         <p>Got any questions for us? Feel free to send them below</p>
         <form>
           <label>Your first name</label>
-          <input type="text" placeholder="" />
+          <input type="text" />
           <label>Your last name</label>
-          <input type="text" placeholder="" />
+          <input type="text" />
           <label>Your message</label>
           <textarea placeholder="Your message" />
           <input className="button submit" type="submit" value="Submit" />

@@ -1,5 +1,5 @@
 import { Navbar } from "./Navbar";
-import { Breadcrumb } from "./Breadcrumb";
-import { Product } from "./Product";
+import { products as Data } from "./Data";
+import { routes } from "./Routes";
 
-export { Navbar, Breadcrumb, Product };
+export { Navbar, Data, routes };

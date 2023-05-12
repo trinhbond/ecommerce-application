@@ -1,6 +1,6 @@
 import React from "react";
+import { routes } from "../components/Components";
 import { NavLink } from "react-router-dom";
-import { routes } from "../Routes";
 
 export const Navbar = () => {
   return (
@@ -11,14 +11,14 @@ export const Navbar = () => {
             <li key={key}>
               <NavLink
                 to={route.path}
-                className={({ isActive }) => isActive && "active"}
+                className={({ isActive }) => (isActive ? "active" : "")}
               >
                 {route.title}
               </NavLink>
             </li>
           );
         })}
-        <li>
+        <li className="last">
           <input className="search-bar" type="text" placeholder="Search..." />
         </li>
       </ul>

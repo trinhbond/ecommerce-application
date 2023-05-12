@@ -1,10 +1,22 @@
 import React from "react";
-import { Product } from "../components/Components";
+import { Data as products } from "../components/Components";
+import { Link } from "react-router-dom";
 
 export const Products = () => {
   return (
     <div className="products">
-      <Product />
+      {products.map((product) => {
+        return (
+          <div className="card" key={product.id}>
+            <img src={product.image} alt="yo" />
+            <h1>{product.name}</h1>
+            <span>
+              {product.price} {product.size}
+            </span>
+            <Link to={`/pages/products/${product.id}`}>View details</Link>
+          </div>
+        );
+      })}
     </div>
   );
 };

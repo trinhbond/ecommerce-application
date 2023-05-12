@@ -147,7 +147,7 @@
 
 %light {
   font-family: "poppins_light", sans-serif;
-  font-weight: normal;
+  font-weight: lighter;
 }
 
 html.no-touch %light,
@@ -169,7 +169,7 @@ html.no-touch body %regular {
 
 %bold {
   font-family: "Poppins";
-  font-weight: normal;
+  font-weight: 600;
 }
 
 html.no-touch %bold,
@@ -183,14 +183,6 @@ html.no-touch body %bold {
 }
 
 body {
-  background-color: $body;
+  background: $body;
   margin: 0;
-}
-
-.contact-wrapper,
-.product-wrapper,
-.not-found,
-.browse,
-.company {
-  padding: 0 120px;
 }

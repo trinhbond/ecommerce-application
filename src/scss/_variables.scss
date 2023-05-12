@@ -1,15 +1,24 @@
 $black: #000;
 $white: #fff;
-$rounded: 100px;
 $body: #f4f6f8;
+$rounded: 100px;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
 
 .button,
+button.button,
 a.button,
-button,
 input[type="submit"] {
   border-radius: $rounded !important;
   border: none;
-  background-color: $black;
+  background: $black;
   color: $white;
   font-weight: 600;
   padding: 8px 24px;
@@ -18,13 +27,12 @@ input[type="submit"] {
   white-space: nowrap;
 }
 
-.breadcrumb {
-  padding: 48px 120px;
-  padding-bottom: 24px;
-  text-align: end;
-
-  span {
-    color: #727e82;
-    vertical-align: middle;
-  }
+.contact-wrapper,
+.product-wrapper,
+.not-found,
+.browse,
+.products,
+.company,
+.home {
+  padding: 0 120px;
 }
