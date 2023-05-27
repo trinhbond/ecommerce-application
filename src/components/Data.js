@@ -4,7 +4,7 @@ export const products = [
     size: "R",
     price: "22.76 USD",
     description: "5 sec ago",
-    image: require("../assets/images/product.jpg"),
+    image: require("../assets/images/hi.jpg"),
     id: 1,
   },
   {
@@ -12,7 +12,7 @@ export const products = [
     size: "XL",
     price: "45.28 USD",
     description: "10 sec ago",
-    image: require("../assets/images/product.jpg"),
+    image: require("../assets/images/hi.jpg"),
     id: 2,
   },
   {
@@ -20,7 +20,7 @@ export const products = [
     size: "M",
     price: "341.79 USD",
     description: "3 sec ago",
-    image: require("../assets/images/product.jpg"),
+    image: require("../assets/images/hi.jpg"),
     id: 3,
   },
   {
@@ -28,7 +28,7 @@ export const products = [
     size: "XXL",
     price: "9.87 USD",
     description: "4 sec ago",
-    image: require("../assets/images/product.jpg"),
+    image: require("../assets/images/hi.jpg"),
     id: 4,
   },
   {
@@ -36,7 +36,7 @@ export const products = [
     size: "S",
     price: "300.99 USD",
     description: "10 sec ago",
-    image: require("../assets/images/product.jpg"),
+    image: require("../assets/images/hi.jpg"),
     id: 5,
   },
   {
@@ -44,7 +44,7 @@ export const products = [
     size: "S",
     price: "115.22 USD",
     description: "12 sec ago",
-    image: require("../assets/images/product.jpg"),
+    image: require("../assets/images/hi.jpg"),
     id: 6,
   },
   {
@@ -52,7 +52,7 @@ export const products = [
     size: "S",
     price: "115.22 USD",
     description: "12 sec ago",
-    image: require("../assets/images/product.jpg"),
+    image: require("../assets/images/hi.jpg"),
     id: 6,
   },
   {
@@ -60,7 +60,7 @@ export const products = [
     size: "S",
     price: "115.22 USD",
     description: "12 sec ago",
-    image: require("../assets/images/product.jpg"),
+    image: require("../assets/images/hi.jpg"),
     id: 6,
   },
   {
@@ -68,7 +68,7 @@ export const products = [
     size: "S",
     price: "115.22 USD",
     description: "12 sec ago",
-    image: require("../assets/images/product.jpg"),
+    image: require("../assets/images/hi.jpg"),
     id: 6,
   },
   {
@@ -76,7 +76,7 @@ export const products = [
     size: "S",
     price: "115.22 USD",
     description: "12 sec ago",
-    image: require("../assets/images/product.jpg"),
+    image: require("../assets/images/hi.jpg"),
     id: 6,
   },
   {
@@ -84,7 +84,7 @@ export const products = [
     size: "S",
     price: "115.22 USD",
     description: "12 sec ago",
-    image: require("../assets/images/product.jpg"),
+    image: require("../assets/images/hi.jpg"),
     id: 6,
   },
   {
@@ -92,7 +92,7 @@ export const products = [
     size: "S",
     price: "115.22 USD",
     description: "12 sec ago",
-    image: require("../assets/images/product.jpg"),
+    image: require("../assets/images/hi.jpg"),
     id: 6,
   },
   {
@@ -100,7 +100,7 @@ export const products = [
     size: "S",
     price: "115.22 USD",
     description: "12 sec ago",
-    image: require("../assets/images/product.jpg"),
+    image: require("../assets/images/hi.jpg"),
     id: 6,
   },
   {
@@ -108,7 +108,7 @@ export const products = [
     size: "S",
     price: "115.22 USD",
     description: "12 sec ago",
-    image: require("../assets/images/product.jpg"),
+    image: require("../assets/images/hi.jpg"),
     id: 6,
   },
   {
@@ -116,7 +116,7 @@ export const products = [
     size: "S",
     price: "115.22 USD",
     description: "12 sec ago",
-    image: require("../assets/images/product.jpg"),
+    image: require("../assets/images/hi.jpg"),
     id: 6,
   },
   {
@@ -124,7 +124,7 @@ export const products = [
     size: "S",
     price: "115.22 USD",
     description: "12 sec ago",
-    image: require("../assets/images/product.jpg"),
+    image: require("../assets/images/hi.jpg"),
     id: 6,
   },
 ];

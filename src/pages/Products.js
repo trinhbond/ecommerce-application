@@ -1,5 +1,5 @@
 import React from "react";
-import { Data as products } from "../components/Components";
+import { Data as products } from "../components";
 import { Link } from "react-router-dom";
 
 export const Products = () => {
@@ -13,7 +13,7 @@ export const Products = () => {
             <span>
               {product.price} {product.size}
             </span>
-            <Link to={`/pages/products/${product.id}`}>View details</Link>
+            <Link to={`/products/${product.id}`}>View details</Link>
           </div>
         );
       })}

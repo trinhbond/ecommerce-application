@@ -1,7 +1,6 @@
 $black: #000;
 $white: #fff;
 $body: #f4f6f8;
-$rounded: 100px;
 
 h1,
 h2,
@@ -12,27 +11,74 @@ h6 {
   margin: 0;
 }
 
-.button,
-button.button,
-a.button,
-input[type="submit"] {
-  border-radius: $rounded !important;
-  border: none;
-  background: $black;
-  color: $white;
-  font-weight: 600;
-  padding: 8px 24px;
-  text-decoration: none;
-  text-align: center;
-  white-space: nowrap;
-}
-
 .contact-wrapper,
 .product-wrapper,
 .not-found,
 .browse,
 .products,
 .company,
-.home {
-  padding: 0 120px;
+.home,
+.product-details {
+  background-color: $black;
+  padding: 0 160px;
 }
+
+.sidebar {
+  background-color: $black;
+  border-right: 1px solid $white;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  width: 300px;
+  z-index: 10;
+
+  ul {
+    li {
+      list-style: none;
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+
+  &:not(.visible) {
+    // transform: translateX(0.3em) rotate(0deg);
+    transform: translateX(-30em);
+    transition: 0.7s;
+
+    @media only screen and (max-width: 980px) {
+      transform: translateX(0);
+      transition: 0.7s;
+    }
+  }
+
+  @media only screen and (max-width: 705px) {
+    display: block;
+  }
+
+  button {
+    background: transparent;
+    cursor: pointer;
+    border: none;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+  }
+}
+
+// button,
+// .button,
+// button.button,
+// a.button,
+// input[type="submit"] {
+//   border-radius: $rounded !important;
+//   border: none;
+//   background: $black;
+//   color: $white;
+//   font-weight: 600;
+//   padding: 8px 24px;
+//   text-decoration: none;
+//   text-align: center;
+//   white-space: nowrap;
+// }

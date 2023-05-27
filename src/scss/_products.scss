@@ -1,6 +1,6 @@
 .products {
   align-items: center;
-  background-color: $body;
+  // background-color: $body;
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(4, 1fr);
@@ -21,11 +21,13 @@
 
   .card {
     border: 1px solid $black;
-    border-radius: 4px;
     padding: 10px 20px;
+    border: 1px solid $white;
+    border-radius: 4px;
 
     img {
       display: none;
+      // width: 100%;
     }
 
     h1 {
@@ -35,7 +37,7 @@
     a {
       background: $black;
       border: 1px solid $black;
-      border-radius: $rounded;
+      border-radius: 32px;
       color: $white;
       display: block;
       font-size: 0.9rem;

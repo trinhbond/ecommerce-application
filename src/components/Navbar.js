@@ -1,5 +1,5 @@
 import React from "react";
-import { routes } from "../components/Components";
+import { routes } from ".";
 import { NavLink } from "react-router-dom";
 
 export const Navbar = () => {
