@@ -1,0 +1,21 @@
+.carousel {
+  display: grid;
+  gap: 25px;
+  grid-template-columns: repeat(3, 1fr);
+
+  .carousel-item {
+    background-image: url("../assets/images/carousel.webp");
+    background-position: center;
+    background-size: contain;
+    font-size: 1.8rem;
+    font-weight: 600;
+    height: 500px;
+    text-transform: uppercase;
+    text-align: center;
+
+    span {
+      position: relative;
+      top: 45%;
+    }
+  }
+}
