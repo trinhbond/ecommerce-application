@@ -5,44 +5,28 @@ nav {
   top: 0;
 
   ul {
-    background: $black;
-    // background-color: $white;
+    // background: $black;
+    background-color: beige;
     list-style: none;
     margin: 0;
-    padding: 48px 160px 24px 160px;
+    padding: 24px 0 12px 12px;
 
     & > li > a {
       color: $white !important;
-      // color: $black;
       text-decoration: none;
+      text-transform: uppercase;
 
       &:visited {
         color: inherit;
       }
       &.active {
-        // border-bottom: 1px solid $white;
         @extend %bold;
       }
     }
-    & > li:not(.last) {
+    & > li {
       display: inline-block;
       font-size: 1.025rem;
       margin-right: 2rem;
-    }
-    .last {
-      float: right;
-
-      .search-bar {
-        border: 1px solid grey;
-        border-radius: 32px;
-        font-size: 0.8rem;
-        max-width: 150px;
-        padding: 6px 12px;
-
-        @media only screen and (max-width: 980px) {
-          display: none;
-        }
-      }
     }
   }
 }

@@ -16,7 +16,7 @@ export const Company = () => {
           more recently with desktop publishing software like Aldus PageMaker
           including versions of Lorem Ipsum.
         </p>
-        <button>Learn more</button>
+        <button className="button learn-more">Learn more</button>
       </div>
       <div className="panel">
         <h2>Who we are</h2>
@@ -31,7 +31,7 @@ export const Company = () => {
           more recently with desktop publishing software like Aldus PageMaker
           including versions of Lorem Ipsum.
         </p>
-        <button>Learn more</button>
+        <button className="button learn-more">Learn more</button>
       </div>
       <div className="panel">
         <h2>Who we are</h2>
@@ -46,7 +46,7 @@ export const Company = () => {
           more recently with desktop publishing software like Aldus PageMaker
           including versions of Lorem Ipsum.
         </p>
-        <button>Learn more</button>
+        <button className="button learn-more">Learn more</button>
       </div>
     </div>
   );

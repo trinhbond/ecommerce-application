@@ -1,5 +1,5 @@
 import React from "react";
-import { routes } from ".";
+import { routes } from "../Routes";
 import { NavLink } from "react-router-dom";
 
 export const Navbar = () => {
@@ -18,9 +18,6 @@ export const Navbar = () => {
             </li>
           );
         })}
-        <li className="last">
-          <input className="search-bar" type="text" placeholder="Search..." />
-        </li>
       </ul>
     </nav>
   );
