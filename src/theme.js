@@ -8,6 +8,13 @@ export const theme = createTheme({
     },
   },
   components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        input: {
+          padding: "4px 0",
+        },
+      },
+    },
     MuiButton: {
       defaultProps: {
         disableRipple: true,
