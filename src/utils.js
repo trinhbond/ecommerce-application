@@ -1,72 +1,43 @@
-import Commerce from "@chec/commerce.js";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import commerce from "./commerce";
 
-export const commerce = new Commerce(process.env.REACT_APP_CHEC_PUBLIC_KEY);
+export function updateQuantity(productId, quantity, type, setStatus) {
+  try {
+    setStatus("loading");
 
-export const addToCart = (productId) =>
-  commerce.cart.add(productId, 1).then((cart) => console.log(cart));
+    commerce.cart
+      .update(productId, {
+        quantity:
+          type === "reduce"
+            ? quantity - 1
+            : type === "add"
+            ? quantity + 1
+            : quantity,
+      })
+      .then((response) => {
+        if (response.cart) setStatus("removed");
+        console.log({ response });
+      });
+  } catch (error) {
+    setStatus("error");
+    console.log({ error });
+  }
+}
 
-export const removeFromCart = (productId, quantity) =>
-  commerce.cart.remove(productId, quantity).then((cart) => console.log(cart));
-
-export const removeQuantity = (productId, quantity) =>
-  commerce.cart
-    .update(productId, {
-      quantity: quantity - 1,
-    })
-    .then((response) => console.log(response));
-
-export const updateCart = (cart) =>
-  commerce.cart.update().then((cart) => console.log(cart));
-
-export const retrieveCart = () =>
-  commerce.cart.retrieve().then((cart) => console.log(cart));
-
-export const refreshCart = () =>
-  commerce.cart.refresh().then((cart) => console.log(cart));
-
-export const deleteCart = () =>
-  commerce.cart.delete().then((cart) => console.log(cart));
-
-export const FetchCart = () => {
-  const [cart, setCart] = useState({});
-  const [loading, setLoading] = useState(true);
+export function useElementWidth() {
+  const ref = useRef(null);
+  const [width, setWidth] = useState(0);
 
   useEffect(() => {
-    async function fetchCart() {
-      commerce.cart
-        .retrieve()
-        .then((cart) => {
-          setCart(cart);
-          setLoading(false);
-          console.log(cart);
-        })
-        .catch((error) => console.log(error));
-    }
-    fetchCart();
-  }, [loading, cart]);
+    if (ref.current !== null) setWidth(ref.current.offsetWidth);
 
-  return { cart, loading };
-};
+    const getWidth = () => {
+      if (ref.current !== null) setWidth(ref.current.offsetWidth);
+    };
+    window.addEventListener("resize", getWidth);
 
-export const RetrieveCart = (id) => {
-  const [product, setProduct] = useState({});
-  const [loading, setLoading] = useState(true);
+    return () => window.removeEventListener("resize", getWidth);
+  }, []);
 
-  useEffect(() => {
-    async function retrieveCart() {
-      commerce.products
-        .retrieve(id)
-        .then((product) => {
-          setProduct(product);
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.log({ error });
-        });
-    }
-    retrieveCart();
-  }, [id]);
-
-  return { product, loading };
-};
+  return { ref, width };
+}
