@@ -1,0 +1,28 @@
+img {
+  max-width: 100%;
+  display: block;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  line-height: 1.6rem;
+  // font-size: 1.125rem;
+  // font-family: system-ui;
+  min-height: 100dvh;
+}
+
+main {
+  width: min(130ch, 100%);
+  margin-inline: auto;
+}
+
+p.carousel-status {
+  display: none;
+}
+
+a {
+  text-decoration: none;
+}
