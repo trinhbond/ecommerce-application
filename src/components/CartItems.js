@@ -10,33 +10,33 @@ import {
   Typography,
   tableCellClasses,
 } from "@mui/material";
-import { addToCart, removeQuantity } from "../utils";
+import { useState } from "react";
+import { CircularProgress } from "@mui/material";
+import { updateQuantity } from "../utils";
 
-function CartTable({ cart }) {
+function CartItems({ cart }) {
+  const [status, setStatus] = useState("");
+
   return (
     <TableContainer
       sx={{
-        display: { xs: "none", sm: "none", md: "block", lg: "block" },
         borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
       }}
     >
       <Table
         sx={{
-          minWidth: 650,
           [`& .${tableCellClasses.body}`]: {
             borderBottom: "none",
           },
         }}
         size="small"
-        aria-label="a dense table"
-        position={"relative"}
+        position="relative"
       >
         <TableHead>
           <TableRow>
             <TableCell
               sx={{
                 fontWeight: 600,
-                fontSize: 14,
                 paddingLeft: 0,
                 paddingRight: 0,
               }}
@@ -47,7 +47,6 @@ function CartTable({ cart }) {
             <TableCell
               sx={{
                 fontWeight: 600,
-                fontSize: 14,
                 paddingLeft: 0,
                 paddingRight: 0,
               }}
@@ -58,7 +57,6 @@ function CartTable({ cart }) {
             <TableCell
               sx={{
                 fontWeight: 600,
-                fontSize: 14,
                 paddingLeft: 0,
                 paddingRight: 0,
               }}
@@ -96,19 +94,15 @@ function CartTable({ cart }) {
                 <Box component="div">
                   <Typography
                     component={"h3"}
-                    sx={{
-                      textTransform: "uppercase",
-                      fontSize: 14,
-                    }}
+                    textTransform="uppercase"
+                    fontSize={14}
                   >
                     {product.name}
                   </Typography>
                   <Typography
                     component={"span"}
-                    sx={{
-                      textTransform: "uppercase",
-                      fontSize: 14,
-                    }}
+                    textTransform="uppercase"
+                    fontSize={14}
                   >
                     {product.price.formatted_with_symbol}
                   </Typography>
@@ -135,16 +129,25 @@ function CartTable({ cart }) {
                     padding: "2px 6px",
                     backgroundColor: "#000",
                     color: "#fff",
+                    borderRadius: "4px",
                   }}
                 >
                   <Button
-                    variant="special"
                     sx={{
                       color: "#fff",
                       minWidth: "auto",
                       padding: "0 8px",
+                      fontWeight: 600,
                     }}
-                    onClick={() => removeQuantity(product.id, product.quantity)}
+                    onClick={() =>
+                      updateQuantity(
+                        product.id,
+                        product.quantity,
+                        "reduce",
+                        setStatus
+                      )
+                    }
+                    disabled={status === "loading"}
                   >
                     &minus;
                   </Button>
@@ -152,18 +155,38 @@ function CartTable({ cart }) {
                     component="span"
                     style={{
                       padding: "0 12px",
+                      fontWeight: 600,
                     }}
                   >
-                    {product.quantity}
+                    {status === "loading" ? (
+                      <CircularProgress
+                        size="1rem"
+                        sx={{
+                          margin: "auto",
+                          color: "#fff",
+                          verticalAlign: "middle",
+                        }}
+                      />
+                    ) : (
+                      product.quantity
+                    )}
                   </Box>
                   <Button
-                    variant="special"
                     sx={{
                       color: "#fff",
                       minWidth: "auto",
                       padding: "0 8px",
+                      fontWeight: 600,
                     }}
-                    onClick={() => addToCart(product.product_id)}
+                    disabled={status === "loading"}
+                    onClick={() =>
+                      updateQuantity(
+                        product.id,
+                        product.quantity,
+                        "add",
+                        setStatus
+                      )
+                    }
                   >
                     &#43;
                   </Button>
@@ -188,4 +211,4 @@ function CartTable({ cart }) {
   );
 }
 
-export default CartTable;
+export default CartItems;

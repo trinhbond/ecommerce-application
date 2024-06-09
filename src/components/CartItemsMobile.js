@@ -10,34 +10,33 @@ import {
   Typography,
   tableCellClasses,
 } from "@mui/material";
-import { addToCart, removeQuantity } from "../utils";
+import { useState } from "react";
+import { CircularProgress } from "@mui/material";
+import { updateQuantity } from "../utils";
 
-function CartTableSmall({ cart }) {
+function CartItemsMobile({ cart }) {
+  const [status, setStatus] = useState("");
+
   return (
     <TableContainer
       sx={{
-        display: { xs: "block", sm: "block", md: "none", lg: "none" },
         borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
-        overflowX: "hidden",
       }}
     >
       <Table
         sx={{
-          minWidth: "auto",
           [`& .${tableCellClasses.body}`]: {
             borderBottom: "none",
           },
         }}
         size="small"
-        aria-label="a dense table"
-        position={"relative"}
+        position="relative"
       >
         <TableHead>
           <TableRow>
             <TableCell
               sx={{
                 fontWeight: 600,
-                fontSize: 14,
                 paddingLeft: 0,
                 paddingRight: 0,
               }}
@@ -48,7 +47,6 @@ function CartTableSmall({ cart }) {
             <TableCell
               sx={{
                 fontWeight: 600,
-                fontSize: 14,
                 paddingLeft: 0,
                 paddingRight: 0,
               }}
@@ -58,7 +56,7 @@ function CartTableSmall({ cart }) {
             </TableCell>
           </TableRow>
         </TableHead>
-        <TableBody sx={{ position: "relative" }}>
+        <TableBody>
           {cart.line_items.map((product) => (
             <TableRow
               key={product.id}
@@ -81,7 +79,7 @@ function CartTableSmall({ cart }) {
                   component="img"
                   src={product.image.url}
                   alt={product.name}
-                  sx={{ verticalAlign: "middle", width: "100%" }}
+                  sx={{ verticalAlign: "middle" }}
                 />
               </TableCell>
               <TableCell
@@ -103,13 +101,14 @@ function CartTableSmall({ cart }) {
                 >
                   <Box>
                     <Typography
-                      component={"h3"}
-                      textTransform={"uppercase"}
-                      fontSize={{ xs: "13px" }}
+                      component="h3"
+                      textTransform="uppercase"
+                      fontSize={14}
+                      whiteSpace={{ xs: "normal", sm: "nowrap" }}
                     >
                       {product.name}
                     </Typography>
-                    <Typography component={"span"} fontSize={{ xs: "13px" }}>
+                    <Typography component="span" fontSize={14}>
                       {product.price.formatted_with_symbol}
                     </Typography>
                   </Box>
@@ -125,18 +124,25 @@ function CartTableSmall({ cart }) {
                       padding: "2px 6px",
                       backgroundColor: "#000",
                       color: "#fff",
+                      borderRadius: "4px",
                     }}
                   >
                     <Button
-                      variant="special"
                       sx={{
                         color: "#fff",
                         minWidth: "auto",
                         padding: "0 8px",
+                        fontWeight: 600,
                       }}
                       onClick={() =>
-                        removeQuantity(product.id, product.quantity)
+                        updateQuantity(
+                          product.id,
+                          product.quantity,
+                          "reduce",
+                          setStatus
+                        )
                       }
+                      disabled={status === "loading"}
                     >
                       &minus;
                     </Button>
@@ -144,18 +150,39 @@ function CartTableSmall({ cart }) {
                       component="span"
                       style={{
                         padding: "0 12px",
+                        fontWeight: 600,
                       }}
                     >
-                      {product.quantity}
+                      {status === "loading" ? (
+                        <CircularProgress
+                          size="1rem"
+                          sx={{
+                            margin: "auto",
+                            color: "#fff",
+                            position: "relative",
+                            verticalAlign: "middle",
+                          }}
+                        />
+                      ) : (
+                        product.quantity
+                      )}
                     </Box>
                     <Button
-                      variant="special"
                       sx={{
                         color: "#fff",
                         minWidth: "auto",
                         padding: "0 8px",
+                        fontWeight: 600,
                       }}
-                      onClick={() => addToCart(product.product_id)}
+                      onClick={() =>
+                        updateQuantity(
+                          product.id,
+                          product.quantity,
+                          "add",
+                          setStatus
+                        )
+                      }
+                      disabled={status === "loading"}
                     >
                       &#43;
                     </Button>
@@ -169,7 +196,6 @@ function CartTableSmall({ cart }) {
                   paddingRight: 0,
                   verticalAlign: "middle",
                   fontWeight: 600,
-                  fontSize: { xs: "13px" },
                 }}
               >
                 {product.line_total.formatted_with_symbol}
@@ -182,4 +208,4 @@ function CartTableSmall({ cart }) {
   );
 }
 
-export default CartTableSmall;
+export default CartItemsMobile;
