@@ -101,7 +101,6 @@ function CartItemsMobile({ cart }) {
                 >
                   <Box>
                     <Typography
-                      component="h3"
                       textTransform="uppercase"
                       fontSize={14}
                       whiteSpace={{ xs: "normal", sm: "nowrap" }}

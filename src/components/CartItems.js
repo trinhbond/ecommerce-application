@@ -92,18 +92,10 @@ function CartItems({ cart }) {
               </TableCell>
               <TableCell align="left" sx={{ verticalAlign: "middle" }}>
                 <Box component="div">
-                  <Typography
-                    component={"h3"}
-                    textTransform="uppercase"
-                    fontSize={14}
-                  >
+                  <Typography textTransform="uppercase" fontSize={14}>
                     {product.name}
                   </Typography>
-                  <Typography
-                    component={"span"}
-                    textTransform="uppercase"
-                    fontSize={14}
-                  >
+                  <Typography component="span" fontSize={14}>
                     {product.price.formatted_with_symbol}
                   </Typography>
                 </Box>
@@ -199,6 +191,7 @@ function CartItems({ cart }) {
                   paddingRight: 0,
                   verticalAlign: "middle",
                   fontWeight: 600,
+                  fontSize: 14,
                 }}
               >
                 {product.line_total.formatted_with_symbol}
