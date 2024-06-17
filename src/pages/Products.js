@@ -1,7 +1,4 @@
-import { useState, useEffect, Suspense } from "react";
-import { Link } from "react-router-dom";
-import { commerce } from "../utils";
-import { Box, CircularProgress, Typography } from "@mui/material";
+import ProductList from "../components/ProductList";
 
 function Products() {
   const [products, setProducts] = useState([]);
