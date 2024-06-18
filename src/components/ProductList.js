@@ -18,7 +18,7 @@ function ProductList({ products }) {
             />
             <Box
               sx={{
-                color: "black",
+                color: "000",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
@@ -27,16 +27,18 @@ function ProductList({ products }) {
               }}
             >
               <Typography
+                fontWeight={700}
+                textTransform="uppercase"
+                fontSize={14}
                 sx={{
-                  color: "black",
-                  fontWeight: 700,
-                  textTransform: "uppercase",
+                  color: "000",
                 }}
               >
                 {product.name}
               </Typography>
               <Typography
                 component="span"
+                fontSize={14}
                 sx={{
                   color: "#000",
                 }}
