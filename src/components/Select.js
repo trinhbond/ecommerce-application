@@ -5,9 +5,7 @@ const Select = ({ options, onChange, value }) => {
   return (
     <select onChange={onChange} value={value}>
       {options.map((option) => (
-        <option value={option}>
-          {option === "" ? "All" : capitalize(option)}
-        </option>
+        <option value={option.value}>{option.name}</option>
       ))}
     </select>
   );
