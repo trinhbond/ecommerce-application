@@ -23,11 +23,6 @@ function Cart() {
       .catch((error) => console.log({ error }));
   }, [cart]);
 
-  function deleteCart() {
-    commerce.cart.delete().then((res) => console.log({ res }));
-  }
-
-
   if (loading) return <Loading />;
 
   if (cart.total_items === 0 || !cart) {
@@ -40,7 +35,9 @@ function Cart() {
           margin: "auto",
         }}
       >
-        <Box fontSize={40}>Your cart is empty</Box>
+        <Box component="p" fontWeight={600}>
+          your cart is empty!
+        </Box>
         <Link to="/">
           <Box
             component="span"
@@ -48,9 +45,9 @@ function Cart() {
             textAlign="center"
             textDecoration="none"
             padding="8px 24px"
-            fontWeight={600}
-            borderRadius="4px"
             width="200px"
+            fontSize={14}
+            fontWeight={500}
             sx={{
               background: "#000",
               color: "#fff",
@@ -68,7 +65,7 @@ function Cart() {
       ref={ref}
       container
       padding={{
-        xs: "46px 24px",
+        xs: "46px 14px",
         sm: "46px 48px",
         md: "46px 48px",
         lg: "46px 48px",
@@ -111,7 +108,6 @@ function Cart() {
               margin: "10px 0",
               width: { xs: "100%", sm: 180 },
               fontWeight: 600,
-              borderRadius: "4px",
               whiteSpace: "nowrap",
             }}
           >
@@ -119,13 +115,12 @@ function Cart() {
           </Button>
           <Button
             size="small"
-            onClick={deleteCart}
+            onClick={() => commerce.cart.empty()}
             variant="contained"
             sx={{
               margin: "10px 0",
               width: { xs: "100%", sm: 180 },
               fontWeight: 600,
-              borderRadius: "4px",
               whiteSpace: "nowrap",
             }}
           >
