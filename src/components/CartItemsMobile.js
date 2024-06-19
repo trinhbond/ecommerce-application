@@ -13,6 +13,7 @@ import {
 import { useState } from "react";
 import { CircularProgress } from "@mui/material";
 import { updateQuantity } from "../utils";
+import { Link } from "react-router-dom";
 
 function CartItemsMobile({ cart }) {
   const [status, setStatus] = useState("");
@@ -100,13 +101,9 @@ function CartItemsMobile({ cart }) {
                   }}
                 >
                   <Box>
-                    <Typography
-                      textTransform="uppercase"
-                      fontSize={14}
-                      whiteSpace={{ xs: "normal", sm: "nowrap" }}
-                    >
-                      {product.name}
-                    </Typography>
+                    <Link to={`/${product.product_id}/${product.name}`}>
+                      <Typography fontSize={14}>{product.name}</Typography>
+                    </Link>
                     <Typography component="span" fontSize={14}>
                       {product.price.formatted_with_symbol}
                     </Typography>
