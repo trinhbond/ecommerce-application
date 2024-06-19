@@ -28,7 +28,7 @@ function ProductDetails() {
 
   if (loading) return <Loading />;
 
-  const handleAddToCart = () => {
+  const handleClick = () => {
     setStatus("Loading");
 
     try {
@@ -50,7 +50,7 @@ function ProductDetails() {
   return (
     <Box
       padding={{
-        xs: "46px 24px",
+        xs: "46px 14px",
         sm: "46px 48px",
         md: "46px 48px",
         lg: "46px 48px",
@@ -64,18 +64,14 @@ function ProductDetails() {
       >
         <Box>
           {product.assets.length > 1 ? (
-            <Box>
-              <Carousel assets={product.assets} />
-            </Box>
+            <Carousel assets={product.assets} />
           ) : (
-            <Box className="img-container">
-              <Box
-                component="img"
-                width="100%"
-                src={product.image.url}
-                alt={product.name}
-              />
-            </Box>
+            <Box
+              component="img"
+              width="100%"
+              src={product.image.url}
+              alt={product.name}
+            />
           )}
         </Box>
       </Box>
@@ -88,24 +84,23 @@ function ProductDetails() {
         gap={3}
       >
         <Box>
-          <Box textTransform="uppercase" fontWeight={600}>
-            {product.name}
-          </Box>
-          <Box component="p" textTransform="uppercase" fontWeight={600} m={0}>
+          <Box fontWeight={600}>{product.name}</Box>
+          <Box component="p" fontWeight={600} m={0}>
             {product.price.formatted_with_symbol}
           </Box>
         </Box>
         <LoadingButton
-          onClick={() => handleAddToCart()}
+          onClick={() => handleClick()}
           color="secondary"
           loading={status === "Loading"}
           loadingPosition="start"
           startIcon={status === "Loading" && <SaveIcon />}
           variant="contained"
-          sx={{ borderRadius: "4px", width: "fit-content" }}
+          sx={{ width: "fit-content", fontWeight: 600 }}
         >
           <span>{status === "Loading" ? "Loading..." : "Add to cart"}</span>
         </LoadingButton>
+
         {status === "Complete" ? (
           <Snackbar open={true} autoHideDuration={6000} onClose={handleClose}>
             <Alert onClose={handleClose} severity="success" variant="filled">
