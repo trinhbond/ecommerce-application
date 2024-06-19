@@ -5,7 +5,7 @@ const Loading = () => (
     thickness={2}
     size="12rem"
     sx={{
-      color: "black",
+      color: "#000000",
       top: 0,
       bottom: 0,
       left: 0,

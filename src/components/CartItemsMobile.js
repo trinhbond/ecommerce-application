@@ -118,12 +118,11 @@ function CartItemsMobile({ cart }) {
                       display: "flex",
                       flexDirection: "row",
                       justifyContent: "space-between",
-                      width: 100,
+                      width: 95,
                       alignItems: "center",
                       padding: "2px 6px",
                       backgroundColor: "#000",
                       color: "#fff",
-                      borderRadius: "4px",
                     }}
                   >
                     <Button

@@ -1,9 +1,11 @@
 const Select = ({ options, onChange, value }) => {
-  const capitalize = (string) =>
-    string.charAt(0).toUpperCase() + string.slice(1);
+  const style = {
+    background: "#000000",
+    color: "#ffffff",
+  };
 
   return (
-    <select onChange={onChange} value={value}>
+    <select onChange={onChange} value={value} style={{ ...style }}>
       {options.map((option) => (
         <option value={option.value}>{option.name}</option>
       ))}

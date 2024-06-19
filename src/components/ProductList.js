@@ -6,19 +6,16 @@ function ProductList({ products }) {
     <>
       {products.map((product) => (
         <Box item key={product.id}>
-          <Link
-            to={`/${product.id}/${product.name}`}
-            style={{ color: "inherit" }}
-          >
+          <Link to={`/${product.id}/${product.name}`}>
             <Box
-              component={"img"}
-              sx={{ userSelect: "none", width: "100%" }}
+              component="img"
+              width="100%"
               src={product.image.url}
               alt={product.name}
             />
             <Box
               sx={{
-                color: "000",
+                color: "#000000",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
@@ -28,7 +25,6 @@ function ProductList({ products }) {
             >
               <Typography
                 fontWeight={700}
-                textTransform="uppercase"
                 fontSize={14}
                 sx={{
                   color: "000",
