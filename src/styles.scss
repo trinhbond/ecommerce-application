@@ -1,28 +1,29 @@
-img {
-  max-width: 100%;
-  display: block;
-}
-
 html {
   color-scheme: light dark;
 }
 
 body {
-  line-height: 1.6rem;
   // font-size: 1.125rem;
   // font-family: system-ui;
+  line-height: 1.6rem;
   min-height: 100dvh;
-}
-
-main {
-  width: min(130ch, 100%);
-  margin-inline: auto;
+  margin-inline: auto !important;
+  text-transform: lowercase;
+  width: min(150ch, 100%);
 }
 
 p.carousel-status {
   display: none;
 }
 
+img {
+  max-width: 100%;
+  display: block;
+  user-select: none;
+}
+
 a {
   text-decoration: none;
+  color: inherit;
+  user-select: none;
 }
