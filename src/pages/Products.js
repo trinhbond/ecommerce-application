@@ -64,12 +64,11 @@ function Products() {
   return (
     <Box
       padding={{
-        xs: "46px 24px",
+        xs: "46px 14px",
         sm: "46px 48px",
         md: "46px 48px",
         lg: "46px 48px",
       }}
-      fontSize={14}
     >
       <Box
         paddingTop="24px"
