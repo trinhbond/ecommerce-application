@@ -8,7 +8,7 @@ export default function Navigation() {
       <Box
         width="100%"
         padding={{
-          xs: "46px 24px",
+          xs: "46px 14px",
           sm: "46px 48px",
           md: "46px 48px",
           lg: "46px 48px",
@@ -27,17 +27,18 @@ export default function Navigation() {
             padding: 0,
           }}
         >
+          <Box></Box>
           <Link
             to="/"
             style={{
-              color: "inherit",
               fontWeight: 800,
+              fontSize: 20,
             }}
           >
-            URBAN THREADS
+            urbanthreads.
           </Link>
           <Box>
-            <Link to="/cart" style={{ color: "inherit" }}>
+            <Link to="/cart">
               <ShoppingCartIcon sx={{ verticalAlign: "middle" }} />
             </Link>
           </Box>
