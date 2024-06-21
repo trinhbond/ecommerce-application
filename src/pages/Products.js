@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { Box } from "@mui/material";
 import ProductList from "../components/ProductList";
 import Loading from "../components/Loading";
 import commerce from "../commerce";
 import Select from "../components/Select";
 import ExpandMoreIcon from "@mui/icons-material/ExpandLess";
 import ExpandLessIcon from "@mui/icons-material/ExpandMore";
+import { Box } from "@mui/material";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -171,22 +171,9 @@ function Products() {
           </Box>
         </Box>
       </Box>
-      <Box
-        container
-        display="grid"
-        columnGap="15px"
-        rowGap="30px"
-        gridTemplateColumns={{
-          xs: "repeat(1, 1fr)",
-          sm: "repeat(2, 1fr)",
-          md: "repeat(3, 1fr)",
-          lg: "repeat(4, 1fr)",
-        }}
-      >
-        <ProductList
-          products={productCategory.length === 0 ? products : productCategory}
-        />
-      </Box>
+      <ProductList
+        products={productCategory.length === 0 ? products : productCategory}
+      />
     </Box>
   );
 }
