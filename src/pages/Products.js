@@ -14,38 +14,6 @@ function Products() {
   const [categoryInput, setCategoryInput] = useState("");
   const [openedSort, setOpenedSort] = useState(false);
   const [openedCategory, setOpenedCategory] = useState(false);
-  const [search] = useState("");
-
-  const sortByLowest = (products) =>
-    products.sort(function (a, b) {
-      return a.price.raw - b.price.raw;
-    });
-
-  const sortByHighest = (products) =>
-    products.sort(function (a, b) {
-      return b.price.raw - a.price.raw;
-    });
-
-  const sortAZ =
-    value === "a-z" && products.sort((a, b) => a.name.localeCompare(b.name));
-
-  const sortZA =
-    value === "z-a" && products.sort((a, b) => b.name.localeCompare(a.name));
-
-  if (value === "lowest") {
-    sortByLowest(products);
-  }
-  if (value === "highest") {
-    sortByHighest(products);
-  }
-
-  const searchResults = products.filter((product) =>
-    product.name.toLowerCase().includes(search)
-  );
-
-  const productCategory = products.filter(
-    (product) => product.categories[0].slug === categoryInput
-  );
 
   useEffect(() => {
     commerce.products
@@ -58,6 +26,34 @@ function Products() {
         console.log(error);
       });
   }, []);
+
+  const sortByLowest = (products) =>
+    products.sort(function (a, b) {
+      return a.price.raw - b.price.raw;
+    });
+
+  const sortByHighest = (products) =>
+    products.sort(function (a, b) {
+      return b.price.raw - a.price.raw;
+    });
+
+  const sortAlphabetical =
+    value === "a-z" && products.sort((a, b) => a.name.localeCompare(b.name));
+
+  const sortUnalphabetical =
+    value === "z-a" && products.sort((a, b) => b.name.localeCompare(a.name));
+
+  const results = products.filter(
+    (product) => product.categories[0].slug === categoryInput
+  );
+
+  // Sort products by price according to option value
+  if (value === "lowest") {
+    sortByLowest(products);
+  }
+  if (value === "highest") {
+    sortByHighest(products);
+  }
 
   if (loading) return <Loading />;
 
@@ -74,7 +70,7 @@ function Products() {
         paddingTop="24px"
         paddingBottom="48px"
         display="flex"
-        flexDirection={{ xs: "row", sm: "row", md: "row", lg: "row" }}
+        flexDirection="row"
         justifyContent="space-between"
         alignItems="center"
       >
@@ -171,9 +167,7 @@ function Products() {
           </Box>
         </Box>
       </Box>
-      <ProductList
-        products={productCategory.length === 0 ? products : productCategory}
-      />
+      <ProductList products={results.length === 0 ? products : results} />
     </Box>
   );
 }
