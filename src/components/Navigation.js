@@ -119,6 +119,7 @@ export default function Navigation() {
                 placeholder="Search for a product..."
                 variant="standard"
                 onChange={handleChange}
+                fullWidth={true}
                 sx={{
                   [`& .MuiInputBase-root::before`]: { borderBottom: 0 },
                   [`& .MuiInputBase-root::after`]: {
