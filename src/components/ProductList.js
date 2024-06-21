@@ -3,7 +3,17 @@ import { Link } from "react-router-dom";
 
 function ProductList({ products }) {
   return (
-    <>
+    <Box
+      display="grid"
+      columnGap="15px"
+      rowGap="30px"
+      gridTemplateColumns={{
+        xs: "repeat(1, 1fr)",
+        sm: "repeat(2, 1fr)",
+        md: "repeat(3, 1fr)",
+        lg: "repeat(4, 1fr)",
+      }}
+    >
       {products.map((product) => (
         <Box item key={product.id}>
           <Link to={`/${product.id}/${product.name}`}>
@@ -45,7 +55,7 @@ function ProductList({ products }) {
           </Link>
         </Box>
       ))}
-    </>
+    </Box>
   );
 }
 
