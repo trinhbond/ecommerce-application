@@ -131,7 +131,16 @@ export default function Navigation() {
                 }}
               />
             </Box>
-            {!search || (search !== "" && <ProductList products={results} />)}
+            {!search ||
+              (search !== "" && (
+                <ProductList
+                  products={results}
+                  onClick={() => {
+                    setIsOpened((isOpened) => !isOpened);
+                    setSearch("");
+                  }}
+                />
+              ))}
           </Box>
         )}
       </Box>

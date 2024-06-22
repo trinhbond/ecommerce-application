@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-function ProductList({ products }) {
+function ProductList({ products, onClick }) {
   return (
     <Box
       display="grid"
@@ -16,7 +16,7 @@ function ProductList({ products }) {
     >
       {products.map((product) => (
         <Box item key={product.id}>
-          <Link to={`/${product.id}/${product.name}`}>
+          <Link to={`/${product.id}/${product.name}`} onClick={onClick}>
             <Box
               component="img"
               width="100%"
