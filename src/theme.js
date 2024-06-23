@@ -3,52 +3,56 @@ import { createTheme } from "@mui/material";
 export const theme = createTheme({
   typography: {
     fontFamily: "Inter",
-    h1: {
-      paddingBottom: 12,
-    },
   },
   components: {
-    MuiOutlinedInput: {
+    MuiButtonBase: {
       styleOverrides: {
-        input: {
-          padding: "4px 0",
-        },
+        root: `
+          background: #000000 !important;
+          color: #ffffff !important;
+          border-radius: 0 !important;
+          box-shadow: none;
+          font-weight: 600;
+          padding: 8px 24px;
+          white-space: nowrap;
+          '::after': {
+            transition: none;
+            background: none;
+            color: inherit;
+            boxShadow: none;
+          },
+          ':hover': {
+            background-color: #000000;
+            box-shadow: none;
+            color: #ffffff;
+          },
+        `,
       },
     },
-    MuiButton: {
-      defaultProps: {
-        disableRipple: true,
-      },
-      variants: [
-        {
-          props: { variant: "special" },
-          style: {
-            background: "none",
-            color: "#000",
-
-            "&:hover": {
-              transition: "none",
-              background: "none",
-              color: "inherit",
-              boxShadow: "none",
-            },
-          },
+    MuiCssBaseline: {
+      styleOverrides: `
+        h1, h2, h3, h4, h5, p, span {
+          font-size: 14px !important;
         },
-      ],
-      styleOverrides: {
-        root: {
-          backgroundColor: "#000",
-          borderRadius: 0,
-          boxShadow: "none",
-          color: "#fff",
-          padding: "8px 24px",
-          "&:hover": {
-            backgroundColor: "#000",
-            boxShadow: "none",
-            color: "#fff",
-          },
+        body {
+          line-height: 1.6rem;
+          min-height: 100dvh;
+          margin-inline: auto;
+          text-transform: lowercase;
+          width: min(150ch, 100%);
         },
-      },
+        img {
+            display: block;
+            max-width: 100%;
+            user-select: none;
+        },
+        a {
+            color: inherit;
+            text-decoration: none;
+            user-select: none;
+            border-radius: 0 !important;
+        },
+      }`,
     },
   },
 });
