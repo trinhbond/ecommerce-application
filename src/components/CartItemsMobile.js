@@ -102,9 +102,9 @@ function CartItemsMobile({ cart }) {
                 >
                   <Box>
                     <Link to={`/${product.product_id}/${product.name}`}>
-                      <Typography fontSize={14}>{product.name}</Typography>
+                      <Typography>{product.name}</Typography>
                     </Link>
-                    <Typography component="span" fontSize={14}>
+                    <Typography component="span">
                       {product.price.formatted_with_symbol}
                     </Typography>
                   </Box>
@@ -115,18 +115,17 @@ function CartItemsMobile({ cart }) {
                       display: "flex",
                       flexDirection: "row",
                       justifyContent: "space-between",
-                      width: 95,
+                      width: 92,
                       alignItems: "center",
-                      padding: "2px 6px",
+                      padding: "2px 10px",
                       backgroundColor: "#000",
                       color: "#fff",
                     }}
                   >
                     <Button
                       sx={{
-                        color: "#fff",
                         minWidth: "auto",
-                        padding: "0 8px",
+                        padding: 0,
                         fontWeight: 600,
                       }}
                       onClick={() =>
@@ -144,7 +143,6 @@ function CartItemsMobile({ cart }) {
                     <Box
                       component="span"
                       style={{
-                        padding: "0 12px",
                         fontWeight: 600,
                       }}
                     >
@@ -166,7 +164,7 @@ function CartItemsMobile({ cart }) {
                       sx={{
                         color: "#fff",
                         minWidth: "auto",
-                        padding: "0 8px",
+                        padding: 0,
                         fontWeight: 600,
                       }}
                       onClick={() =>

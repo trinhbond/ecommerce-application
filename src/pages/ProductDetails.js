@@ -96,14 +96,22 @@ function ProductDetails() {
           loadingPosition="start"
           startIcon={status === "Loading" && <SaveIcon />}
           variant="contained"
-          sx={{ width: "fit-content", fontWeight: 600 }}
+          disableRipple={true}
+          sx={{
+            width: 150,
+            padding: "8px 24px",
+          }}
         >
           <span>{status === "Loading" ? "Loading..." : "Add to cart"}</span>
         </LoadingButton>
 
         {status === "Complete" ? (
           <Snackbar open={true} autoHideDuration={6000} onClose={handleClose}>
-            <Alert onClose={handleClose} severity="success" variant="filled">
+            <Alert
+              onClose={handleClose}
+              variant="filled"
+              sx={{ bgcolor: "#000" }}
+            >
               Item added to cart!
             </Alert>
           </Snackbar>

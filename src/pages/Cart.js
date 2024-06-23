@@ -46,7 +46,6 @@ function Cart() {
             textDecoration="none"
             padding="8px 24px"
             width="200px"
-            fontSize={14}
             fontWeight={500}
             sx={{
               background: "#000",
@@ -82,7 +81,7 @@ function Cart() {
         }}
       >
         <Typography fontWeight={700}>CART</Typography>
-        {width > 765 ? (
+        {width > 700 ? (
           <CartItems cart={cart} />
         ) : (
           <CartItemsMobile cart={cart} />
@@ -100,28 +99,21 @@ function Cart() {
             TOTAL: {cart.subtotal.formatted_with_symbol}
           </Typography>
           <Button
-            size="small"
-            underline="none"
             variant="contained"
             href={cart.hosted_checkout_url}
             sx={{
               margin: "10px 0",
               width: { xs: "100%", sm: 180 },
-              fontWeight: 600,
-              whiteSpace: "nowrap",
             }}
           >
             Checkout
           </Button>
           <Button
-            size="small"
             onClick={() => commerce.cart.empty()}
             variant="contained"
             sx={{
               margin: "10px 0",
               width: { xs: "100%", sm: 180 },
-              fontWeight: 600,
-              whiteSpace: "nowrap",
             }}
           >
             Clear Cart

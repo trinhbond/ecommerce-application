@@ -41,9 +41,6 @@ export default function Navigation() {
           md: "46px 48px",
           lg: "46px 48px",
         }}
-        sx={{
-          color: "#000",
-        }}
       >
         <Box
           sx={{

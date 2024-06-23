@@ -25,7 +25,6 @@ function ProductList({ products, onClick }) {
             />
             <Box
               sx={{
-                color: "#000000",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
@@ -33,22 +32,8 @@ function ProductList({ products, onClick }) {
                 gap: 1,
               }}
             >
-              <Typography
-                fontWeight={700}
-                fontSize={14}
-                sx={{
-                  color: "000",
-                }}
-              >
-                {product.name}
-              </Typography>
-              <Typography
-                component="span"
-                fontSize={14}
-                sx={{
-                  color: "#000",
-                }}
-              >
+              <Typography fontWeight={700}>{product.name}</Typography>
+              <Typography component="span">
                 {product.price.formatted_with_code}
               </Typography>
             </Box>

@@ -88,15 +88,15 @@ function CartItems({ cart }) {
                   component="img"
                   src={product.image.url}
                   alt={product.name}
-                  sx={{ verticalAlign: "middle", width: "100%" }}
+                  sx={{ verticalAlign: "middle" }}
                 />
               </TableCell>
               <TableCell align="left" sx={{ verticalAlign: "middle" }}>
                 <Box component="div">
                   <Link to={`/${product.product_id}/${product.name}`}>
-                    <Typography fontSize={14}>{product.name}</Typography>
+                    <Typography>{product.name}</Typography>
                   </Link>
-                  <Typography component="span" fontSize={14}>
+                  <Typography component="span">
                     {product.price.formatted_with_symbol}
                   </Typography>
                 </Box>
@@ -116,19 +116,18 @@ function CartItems({ cart }) {
                     display: "flex",
                     flexDirection: "row",
                     justifyContent: "space-between",
-                    width: 95,
+                    width: 92,
                     marginLeft: "auto",
                     alignItems: "center",
-                    padding: "2px 6px",
+                    padding: "2px 10px",
                     backgroundColor: "#000",
                     color: "#fff",
                   }}
                 >
                   <Button
                     sx={{
-                      color: "#fff",
                       minWidth: "auto",
-                      padding: "0 8px",
+                      padding: 0,
                       fontWeight: 600,
                     }}
                     onClick={() =>
@@ -146,7 +145,6 @@ function CartItems({ cart }) {
                   <Box
                     component="span"
                     style={{
-                      padding: "0 12px",
                       fontWeight: 600,
                     }}
                   >
@@ -154,8 +152,9 @@ function CartItems({ cart }) {
                       <CircularProgress
                         size="1rem"
                         sx={{
-                          margin: "auto",
                           color: "#fff",
+                          padding: 0,
+                          margin: 0,
                           verticalAlign: "middle",
                         }}
                       />
@@ -165,9 +164,8 @@ function CartItems({ cart }) {
                   </Box>
                   <Button
                     sx={{
-                      color: "#fff",
                       minWidth: "auto",
-                      padding: "0 8px",
+                      padding: 0,
                       fontWeight: 600,
                     }}
                     disabled={status === "loading"}
@@ -191,7 +189,6 @@ function CartItems({ cart }) {
                   paddingRight: 0,
                   verticalAlign: "middle",
                   fontWeight: 600,
-                  fontSize: 14,
                 }}
               >
                 {product.line_total.formatted_with_symbol}
