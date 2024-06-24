@@ -17,12 +17,7 @@ function ProductList({ products, onClick }) {
       {products.map((product) => (
         <Box item key={product.id}>
           <Link to={`/${product.id}/${product.name}`} onClick={onClick}>
-            <Box
-              component="img"
-              width="100%"
-              src={product.image.url}
-              alt={product.name}
-            />
+            <Box component="img" src={product.image.url} alt={product.name} />
             <Box
               sx={{
                 display: "flex",

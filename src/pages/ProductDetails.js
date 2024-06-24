@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Carousel from "../components/Carousel";
 import Loading from "../components/Loading";
 import { LoadingButton } from "@mui/lab";
@@ -66,12 +66,7 @@ function ProductDetails() {
           {product.assets.length > 1 ? (
             <Carousel assets={product.assets} />
           ) : (
-            <Box
-              component="img"
-              width="100%"
-              src={product.image.url}
-              alt={product.name}
-            />
+            <Box component="img" src={product.image.url} alt={product.name} />
           )}
         </Box>
       </Box>
@@ -84,8 +79,8 @@ function ProductDetails() {
         gap={3}
       >
         <Box>
-          <Box fontWeight={600}>{product.name}</Box>
-          <Box component="p" fontWeight={600} m={0}>
+          <Typography fontWeight={700}>{product.name}</Typography>
+          <Box component="span" m={0}>
             {product.price.formatted_with_symbol}
           </Box>
         </Box>
