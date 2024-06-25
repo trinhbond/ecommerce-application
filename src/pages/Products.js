@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import ProductList from "../components/ProductList";
 import Loading from "../components/Loading";
 import commerce from "../commerce";
-import Select from "../components/Select";
 import ExpandMoreIcon from "@mui/icons-material/ExpandLess";
 import ExpandLessIcon from "@mui/icons-material/ExpandMore";
 import { Box } from "@mui/material";
@@ -11,8 +10,8 @@ import FormSelect from "../components/Select";
 function Products() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [value, setValue] = useState("a-z");
-  const [categoryInput, setCategoryInput] = useState("");
+  const [sortValue, setSortValue] = useState("a-z");
+  const [categoryValue, setCategoryValue] = useState("");
   const [openedSort, setOpenedSort] = useState(false);
   const [openedCategory, setOpenedCategory] = useState(false);
 
@@ -39,20 +38,22 @@ function Products() {
     });
 
   const sortAlphabetical =
-    value === "a-z" && products.sort((a, b) => a.name.localeCompare(b.name));
+    sortValue === "a-z" &&
+    products.sort((a, b) => a.name.localeCompare(b.name));
 
   const sortUnalphabetical =
-    value === "z-a" && products.sort((a, b) => b.name.localeCompare(a.name));
+    sortValue === "z-a" &&
+    products.sort((a, b) => b.name.localeCompare(a.name));
 
   const results = products.filter(
-    (product) => product.categories[0].slug === categoryInput
+    (product) => product.categories[0].slug === categoryValue
   );
 
   // Sort products by price according to option value
-  if (value === "lowest") {
+  if (sortValue === "lowest") {
     sortByLowest(products);
   }
-  if (value === "highest") {
+  if (sortValue === "highest") {
     sortByHighest(products);
   }
 
@@ -90,7 +91,8 @@ function Products() {
           >
             <Box
               component="span"
-              sx={{ display: "block", fontWeight: 600 }}
+              display="block"
+              fontWeight={600}
               onClick={() => setOpenedSort((opened) => !opened)}
             >
               SORT{" "}
@@ -102,18 +104,16 @@ function Products() {
             </Box>
             {openedSort && (
               <Box
-                sx={{
-                  position: {
-                    xs: "relative",
-                    sm: "absolute",
-                    md: "absolute",
-                    lg: "absolute",
-                  },
+                position={{
+                  xs: "relative",
+                  sm: "absolute",
+                  md: "absolute",
+                  lg: "absolute",
                 }}
               >
                 <FormSelect
-                  onChange={(e) => setValue(e.target.value)}
-                  value={value}
+                  onChange={(e) => setSortValue(e.target.value)}
+                  value={sortValue}
                   options={[
                     { value: "lowest", name: "Price: Low to High" },
                     { value: "highest", name: "Price: High to Low" },
@@ -131,7 +131,8 @@ function Products() {
           >
             <Box
               component="span"
-              sx={{ display: "block", fontWeight: 600 }}
+              display="block"
+              fontWeight={600}
               onClick={() => setOpenedCategory((category) => !category)}
             >
               CATEGORY{" "}
@@ -153,8 +154,8 @@ function Products() {
                 }}
               >
                 <FormSelect
-                  value={categoryInput}
-                  onChange={(e) => setCategoryInput(e.target.value)}
+                  value={categoryValue}
+                  onChange={(e) => setCategoryValue(e.target.value)}
                   options={[
                     { value: "", name: "All" },
                     { value: "bottoms", name: "Bottoms" },

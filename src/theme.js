@@ -5,7 +5,7 @@ export const theme = createTheme({
     fontFamily: "Inter",
   },
   components: {
-    MuiButtonBase: {
+    MuiButton: {
       styleOverrides: {
         root: `
           background: #000000 !important;
