@@ -6,6 +6,7 @@ import Select from "../components/Select";
 import ExpandMoreIcon from "@mui/icons-material/ExpandLess";
 import ExpandLessIcon from "@mui/icons-material/ExpandMore";
 import { Box } from "@mui/material";
+import FormSelect from "../components/Select";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -110,7 +111,7 @@ function Products() {
                   },
                 }}
               >
-                <Select
+                <FormSelect
                   onChange={(e) => setValue(e.target.value)}
                   value={value}
                   options={[
@@ -151,7 +152,7 @@ function Products() {
                   },
                 }}
               >
-                <Select
+                <FormSelect
                   value={categoryInput}
                   onChange={(e) => setCategoryInput(e.target.value)}
                   options={[
