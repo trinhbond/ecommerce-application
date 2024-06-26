@@ -14,9 +14,17 @@ import { useState } from "react";
 import { CircularProgress } from "@mui/material";
 import { updateQuantity } from "../utils";
 import { Link } from "react-router-dom";
+import commerce from "../commerce";
+import { Close } from "@mui/icons-material";
 
 function CartItemsMobile({ cart }) {
   const [status, setStatus] = useState("");
+
+  const handleClick = (productId) =>
+    commerce.cart
+      .remove(productId)
+      .then((res) => console.log(res))
+      .catch((error) => console.log(error));
 
   return (
     <TableContainer
@@ -189,8 +197,19 @@ function CartItemsMobile({ cart }) {
                   paddingRight: 0,
                   verticalAlign: "middle",
                   fontWeight: 600,
+                  position: "relative",
                 }}
               >
+                <Box
+                  component="span"
+                  position="absolute"
+                  top={2}
+                  right={0}
+                  sx={{ cursor: "pointer" }}
+                  onClick={() => handleClick(product.id)}
+                >
+                  <Close sx={{ color: "#cdcdcd" }} />
+                </Box>
                 {product.line_total.formatted_with_symbol}
               </TableCell>
             </TableRow>
