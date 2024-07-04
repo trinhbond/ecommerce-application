@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
 import { useEffect, useState } from "react";
@@ -30,7 +30,7 @@ export default function Navigation() {
       });
   }, []);
 
-  const handleChange = (e) => setSearch(e.target.value);
+  const handleChange = (event) => setSearch(event.target.value);
 
   return (
     <Box component="header">
@@ -70,7 +70,7 @@ export default function Navigation() {
           </Link>
           <Box>
             <Link to="/cart">
-              <ShoppingCartIcon sx={{ verticalAlign: "middle" }} />
+              <ShoppingBagIcon sx={{ verticalAlign: "middle" }} />
             </Link>
           </Box>
         </Box>
@@ -122,7 +122,7 @@ export default function Navigation() {
                   [`& .MuiInputBase-root::after`]: {
                     borderBottom: 0,
                   },
-                  ["& .MuiInput-underline:hover:before"]: {
+                  "& .MuiInput-underline:hover:before": {
                     border: "none !important",
                   },
                 }}
