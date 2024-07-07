@@ -8,7 +8,7 @@ import commerce from "../commerce";
 import { Alert, Snackbar } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 
-function ProductDetails() {
+export default function ProductDetails() {
   const { id } = useParams();
   const [status, setStatus] = useState("");
   const [product, setProduct] = useState({});
@@ -137,5 +137,3 @@ function ProductDetails() {
     </Box>
   );
 }
-
-export default ProductDetails;

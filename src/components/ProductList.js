@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-function ProductList({ products, onClick }) {
+export default function ProductList({ products, onClick }) {
   return (
     <Box
       display="grid"
@@ -38,5 +38,3 @@ function ProductList({ products, onClick }) {
     </Box>
   );
 }
-
-export default ProductList;

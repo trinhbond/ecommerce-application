@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 import commerce from "../commerce";
 import { Close } from "@mui/icons-material";
 
-function CartItems({ cart }) {
+export default function CartItems({ cart }) {
   const [status, setStatus] = useState("");
 
   const handleClick = (productId) =>
@@ -219,5 +219,3 @@ function CartItems({ cart }) {
     </TableContainer>
   );
 }
-
-export default CartItems;
