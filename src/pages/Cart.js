@@ -7,7 +7,7 @@ import commerce from "../commerce";
 import Loading from "../components/Loading";
 import { useElementWidth } from "../utils";
 
-function Cart() {
+export default function Cart() {
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
   const { ref, width } = useElementWidth();
@@ -81,7 +81,7 @@ function Cart() {
         }}
       >
         <Typography fontWeight={700}>CART</Typography>
-        {width > 700 ? (
+        {width > 600 ? (
           <CartItems cart={cart} />
         ) : (
           <CartItemsMobile cart={cart} />
@@ -123,5 +123,3 @@ function Cart() {
     </Box>
   );
 }
-
-export default Cart;

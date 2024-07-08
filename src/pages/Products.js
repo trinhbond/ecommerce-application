@@ -7,7 +7,7 @@ import ExpandLessIcon from "@mui/icons-material/ExpandMore";
 import { Box } from "@mui/material";
 import FormSelect from "../components/Select";
 
-function Products() {
+export default function Products() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [sortValue, setSortValue] = useState("a-z");
@@ -173,5 +173,3 @@ function Products() {
     </Box>
   );
 }
-
-export default Products;
