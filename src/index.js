@@ -5,6 +5,7 @@ import { ThemeProvider } from "@mui/material";
 import { theme } from "./theme";
 import commerce from "./commerce";
 import CssBaseline from "@mui/material/CssBaseline";
+import "./globals.scss";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
