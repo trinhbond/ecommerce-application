@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import Carousel from "../components/Carousel";
 import Loading from "../components/Loading";
-import { LoadingButton } from "@mui/lab";
 import commerce from "../commerce";
 import { Alert, Snackbar } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
@@ -93,7 +92,7 @@ export default function ProductDetails() {
             culpa qui officia deserunt mollit anim id est laborum.
           </Box>
         </Box>
-        <LoadingButton
+        <Button
           onClick={() => handleClick()}
           color="secondary"
           loading={status === "Loading"}
@@ -107,7 +106,7 @@ export default function ProductDetails() {
           }}
         >
           <span>{status === "Loading" ? "Loading..." : "Add to cart"}</span>
-        </LoadingButton>
+        </Button>
 
         {status === "Complete" ? (
           <Snackbar open={true} autoHideDuration={6000} onClose={handleClose}>
