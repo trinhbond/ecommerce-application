@@ -15,7 +15,6 @@ export default function Cart() {
       .then((cart) => {
         setCart(cart);
         setLoading(false);
-        console.log({ cart });
       })
       .catch((error) => console.log({ error }));
   }, [cart]);
