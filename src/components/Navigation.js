@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import SearchIcon from "@mui/icons-material/Search";
 import { useEffect, useState } from "react";
 import commerce from "../commerce";
-import { Close } from "@mui/icons-material";
-import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import { FaSearch } from "react-icons/fa";
+import { BsFillBagFill } from "react-icons/bs";
+import { IoCloseSharp, IoSearch } from "react-icons/io5";
 
 export default function Navigation() {
   const [products, setProducts] = useState([]);
@@ -29,6 +29,11 @@ export default function Navigation() {
 
   const handleChange = (event) => setSearch(event.target.value);
 
+  const reset = () => {
+    setIsOpened((isOpened) => !isOpened);
+    setSearch("");
+  };
+
   const Backdrop = () => (
     <div className="backdrop fixed bg-[#00000059] w-full h-dvh top-0 left-0 top-0 bottom-0 right-0 z-10" />
   );
@@ -37,37 +42,23 @@ export default function Navigation() {
     <div className="relative">
       {isOpened && <Backdrop />}
       <div className="px-16 max-[992px]:px-12 max-[768px]:px-8 max-[600px]:px-4 flex justify-between flex-row items-center h-[150px] content-center">
-        <button
-          onClick={() => {
-            setIsOpened((isOpened) => !isOpened);
-            setSearch("");
-          }}
-        >
-          <SearchIcon />
+        <button onClick={() => reset()}>
+          <FaSearch fontSize={20} />
         </button>
-        <Link
-          to="/"
-          style={{
-            fontWeight: 800,
-            fontSize: 20,
-          }}
-        >
-          urbanthreads.
+        <Link to="/">
+          <span className="text-xl font-bold">urbanthreads</span>
         </Link>
         <Link to="/cart">
-          <ShoppingBagIcon />
+          <BsFillBagFill fontSize={20} />
         </Link>
       </div>
       {isOpened && (
         <div className="px-16 max-[500px]:px-2 bg-white h-[150px] absolute content-end w-full gap-2 top-0 z-[20]">
           <div className="input-wrapper w-full flex flex-row justify-between">
-            <SearchIcon
-              sx={{
-                color: "action.active",
-                mr: 2,
-                my: 0.5,
-                position: "absolute",
-              }}
+            <IoSearch
+              className="absolute mt-1.5 ml-1"
+              fontSize={20}
+              color={"#0000008a"}
             />
             <input
               className="w-full py-1 pl-8 focus:outline-none"
@@ -75,14 +66,8 @@ export default function Navigation() {
               type="text"
               onChange={handleChange}
             />
-            <button
-              className="z-[20"
-              onClick={() => {
-                setIsOpened((isOpened) => !isOpened);
-                setSearch("");
-              }}
-            >
-              <Close sx={{ color: "#0000008a" }} />
+            <button className="z-[20" onClick={() => reset()}>
+              <IoCloseSharp fontSize={24} color={"#0000008a"} />
             </button>
           </div>
           {search ? (
@@ -98,10 +83,7 @@ export default function Navigation() {
                     <div className="inline-block">
                       <Link
                         to={`/${product.id}/${product.name}`}
-                        onClick={() => {
-                          setIsOpened((isOpened) => !isOpened);
-                          setSearch("");
-                        }}
+                        onClick={() => reset()}
                       >
                         <span className="font-semibold">{product.name}</span>
                       </Link>
