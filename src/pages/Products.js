@@ -23,7 +23,7 @@ export default function Products() {
   if (loading) return <Loading />;
 
   return (
-    <div className="py-12">
+    <div className="py-12 px-16 max-[992px]:px-12 max-[768px]:px-8 max-[600px]:px-4">
       <ProductList products={products} />
     </div>
   );

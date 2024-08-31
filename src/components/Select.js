@@ -42,7 +42,7 @@ export default function FormSelect({ options, value, onChange }) {
           }}
         >
           {options.map(({ value, name }) => (
-            <MenuItem key={value} value={value} sx={{ fontSize: 14 }}>
+            <MenuItem key={value} value={value}>
               {name}
             </MenuItem>
           ))}

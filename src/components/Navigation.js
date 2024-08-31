@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
-import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
-import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
 import { useEffect, useState } from "react";
 import commerce from "../commerce";
-import ProductList from "./ProductList";
+import { Close } from "@mui/icons-material";
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 
 export default function Navigation() {
   const [products, setProducts] = useState([]);
@@ -31,21 +30,21 @@ export default function Navigation() {
   const handleChange = (event) => setSearch(event.target.value);
 
   const Backdrop = () => (
-    <div className="absolute bg-red-100 w-full top-0 left-0 top-0 bottom-0 right-0 h-dvh z-40" />
+    <div className="backdrop fixed bg-[#00000059] w-full h-dvh top-0 left-0 top-0 bottom-0 right-0 z-10" />
   );
 
   return (
-    <div>
-      <div className="flex justify-between flex-row items-center h-[100px] z-50 relative">
-        <div>
-          {isOpened && <Backdrop />}
-          <button
-            className="z-50"
-            onClick={() => setIsOpened((isOpened) => !isOpened)}
-          >
-            {isOpened ? <CloseIcon /> : <SearchIcon />}
-          </button>
-        </div>
+    <div className="relative">
+      {isOpened && <Backdrop />}
+      <div className="px-16 max-[992px]:px-12 max-[768px]:px-8 max-[600px]:px-4 flex justify-between flex-row items-center h-[150px] content-center">
+        <button
+          onClick={() => {
+            setIsOpened((isOpened) => !isOpened);
+            setSearch("");
+          }}
+        >
+          <SearchIcon />
+        </button>
         <Link
           to="/"
           style={{
@@ -55,40 +54,48 @@ export default function Navigation() {
         >
           urbanthreads.
         </Link>
-        <Link to="/cart" className="z-50">
-          <ShoppingBagIcon sx={{ verticalAlign: "middle" }} />
+        <Link to="/cart">
+          <ShoppingBagIcon />
         </Link>
       </div>
       {isOpened && (
-        // <div className="py-[2rem] px-[1rem] bg-white max-w-full w-[150ch] absolute m-auto left-0 top-0 right-0 bottom-0 z-[9999]">
-        <div className="bg-red-200 z-50 absolute max-w-[150ch]">
-          <div>
+        <div className="px-16 max-[500px]:px-2 bg-white h-[150px] absolute content-end w-full gap-2 top-0 z-[20]">
+          <div className="input-wrapper w-full flex flex-row justify-between">
             <SearchIcon
               sx={{
                 color: "action.active",
-                mr: 1,
+                mr: 2,
                 my: 0.5,
                 position: "absolute",
               }}
             />
             <input
-              className="w-full py-1 pl-8 border-b border-black focus:outline-none"
+              className="w-full py-1 pl-8 focus:outline-none"
               placeholder="Search for a product..."
               type="text"
               onChange={handleChange}
             />
+            <button
+              className="z-[20"
+              onClick={() => {
+                setIsOpened((isOpened) => !isOpened);
+                setSearch("");
+              }}
+            >
+              <Close sx={{ color: "#0000008a" }} />
+            </button>
           </div>
           {search ? (
             results.length > 0 ? (
-              <div className="bg-green-200 grid grid-cols-1 gap-4 py-4">
+              <div className="z-50 py-4 absolute mt-[1px] w-full left-0 right-0 bg-white grid grid-cols-1 gap-4 max-[560px]:gap-8 ">
                 {results.map((product) => (
-                  <div className="grid grid-cols-2 gap-2 justify-start">
+                  <div className="px-16 max-[560px]:px-4 flex flex-row max-[480px]:flex-col flex-wrap gap-8 max-[560px]:gap-4 items-center max-[560px]:items-start">
                     <img
-                      className="w-1/2 inline-block"
+                      className="max-w-[100px] max-[560px]:max-w-full inline-block"
                       src={product.image.url}
                       alt={product.name}
                     />
-                    <div className="w-min inline-block">
+                    <div className="inline-block">
                       <Link
                         to={`/${product.id}/${product.name}`}
                         onClick={() => {
@@ -104,14 +111,9 @@ export default function Navigation() {
                 ))}
               </div>
             ) : (
-              // <ProductList
-              //   products={results}
-              // onClick={() => {
-              //   setIsOpened((isOpened) => !isOpened);
-              //   setSearch("");
-              // }}
-              // />
-              <p className="mt-2">No results for "{search}".</p>
+              <p className="w-full bg-white absolute z-20 left-0 right-0 px-16 py-4 mt-[1px] bg-white">
+                No results for "{search}".
+              </p>
             )
           ) : null}
         </div>

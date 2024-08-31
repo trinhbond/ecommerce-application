@@ -45,26 +45,24 @@ export default function Cart() {
   }
 
   return (
-    <div className="relative py-12">
-      <div>
-        <CartItems cart={cart} />
-        <div className="my-4 flex items-end flex-col ml-auto lg:w-full md:w-full sm:w-1/2 xs:w-1/2">
-          <span className="font-semibold">
-            total: {cart.subtotal.formatted_with_symbol}
-          </span>
-          <a
-            className="whitespace-nowrap hover:shadow-md mt-4 lg:w-[125px] md:w-[125px] sm:w-[125px] xs:w-full bg-black text-center text-white font-semibold py-[8px] px-[24px]"
-            href={cart.hosted_checkout_url}
-          >
-            checkout
-          </a>
-          <button
-            className="whitespace-nowrap hover:shadow-md mt-2 lg:w-[125px] md:w-[125px] sm:w-[125px] xs:w-full bg-black text-center text-white font-semibold py-[8px] px-[24px]"
-            onClick={() => handleClick}
-          >
-            clear cart
-          </button>
-        </div>
+    <div className="py-12 px-16 max-[992px]:px-12 max-[768px]:px-8 max-[600px]:px-4">
+      <CartItems cart={cart} />
+      <div className="my-4 flex items-end flex-col ml-auto lg:w-full md:w-full sm:w-1/2 xs:w-1/2">
+        <span className="font-semibold">
+          total: {cart.subtotal.formatted_with_symbol}
+        </span>
+        <a
+          className="whitespace-nowrap hover:shadow-md mt-4 lg:w-[125px] md:w-[125px] sm:w-[125px] xs:w-full bg-black text-center text-white font-semibold py-[8px] px-[24px]"
+          href={cart.hosted_checkout_url}
+        >
+          checkout
+        </a>
+        <button
+          className="whitespace-nowrap hover:shadow-md mt-2 lg:w-[125px] md:w-[125px] sm:w-[125px] xs:w-full bg-black text-center text-white font-semibold py-[8px] px-[24px]"
+          onClick={() => handleClick}
+        >
+          clear cart
+        </button>
       </div>
     </div>
   );

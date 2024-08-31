@@ -45,7 +45,7 @@ export default function ProductDetails() {
   };
 
   return (
-    <div className="py-12 grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 gap-8">
+    <div className="py-12 px-16 max-[992px]:px-12 max-[768px]:px-8 max-[600px]:px-4 grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 gap-8">
       <div className="m-auto xs:w-auto sm:w-auto md:w-auto lg:w-full">
         <div>
           {product.assets.length > 1 ? (

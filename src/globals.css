@@ -11,16 +11,11 @@ body {
   line-height: 1.6rem !important;
   min-height: 100dvh !important;
   margin-inline: auto !important;
-  width: min(150ch, 100%) !important;
-  /* border: 1px solid red; */
-  padding: 2rem 1rem !important;
   font-size: 14px !important;
-  /* background: #393531 !important; */
 }
 
 img {
   display: block;
-  /* max-width: 100%; */
   -webkit-user-select: none;
   user-select: none;
 }
