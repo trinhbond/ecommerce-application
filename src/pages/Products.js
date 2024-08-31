@@ -15,10 +15,13 @@ export default function Products() {
         setProducts(res.data);
         setLoading(false);
       })
-      .catch((error) => {
-        setError(error);
-      });
+      .catch((error) => setError(error));
   }, []);
+
+  useEffect(() => {
+    if (error.length > 0)
+      console.log(`${error.statusCode} : ${error.data.error.message}`);
+  }, [error]);
 
   if (loading) return <Loading />;
 
