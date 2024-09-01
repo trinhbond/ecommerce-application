@@ -3,46 +3,60 @@ import { useParams } from "react-router-dom";
 import Carousel from "../components/Carousel";
 import Loading from "../components/Loading";
 import commerce from "../commerce";
-import { Alert, Snackbar } from "@mui/material";
+import { toast } from "react-toastify";
 
 export default function ProductDetails() {
   const { id } = useParams();
   const [status, setStatus] = useState("");
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState({});
 
   useEffect(() => {
-    commerce.products
-      .retrieve(id)
-      .then((product) => {
-        setProduct(product);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log({ error });
-      });
+    function getProductDetails() {
+      commerce.products
+        .retrieve(id)
+        .then((product) => {
+          setProduct(product);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.log({ error });
+        });
+    }
+    getProductDetails();
   }, [id]);
 
-  if (loading) return <Loading />;
-
-  const handleClick = () => {
-    setStatus("Loading");
-
-    try {
-      commerce.cart.add(product.id, 1).then((item) => {
-        setStatus("Complete");
+  useEffect(() => {
+    if (status === "success") {
+      toast.success("Item added to cart", {
+        position: "bottom-left",
+        theme: "colored",
+        toastId: "success",
       });
-    } catch (err) {
-      setStatus("Error");
+    } else if (status === "error") {
+      toast.error(`${error.statusCode}: ${error.data.error.message}`, {
+        position: "bottom-left",
+        theme: "colored",
+        toastId: "error",
+      });
     }
-  };
+  }, [status]);
 
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setStatus(null);
-  };
+  function handleClick() {
+    setStatus("loading");
+    commerce.cart
+      .add(product.id, 1)
+      .then(() => {
+        setStatus("success");
+      })
+      .catch((error) => {
+        setStatus("error");
+        setError(error);
+      });
+  }
+
+  if (loading) return <Loading />;
 
   return (
     <div className="py-12 px-16 max-[992px]:px-12 max-[768px]:px-8 max-[600px]:px-4 grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 gap-8">
@@ -66,36 +80,12 @@ export default function ProductDetails() {
         </div>
         <p dangerouslySetInnerHTML={{ __html: product.description }} />
         <button
-          onClick={() => handleClick()}
-          disabled={status === "Loading"}
           className={`disabled:bg-[#cccccc] bg-black text-white font-semibold w-[150px] py-[8px] px-[24px]`}
+          onClick={handleClick}
+          disabled={status === "loading"}
         >
           add to cart
         </button>
-        {status === "Complete" ? (
-          <Snackbar open={true} autoHideDuration={6000} onClose={handleClose}>
-            <Alert
-              onClose={handleClose}
-              variant="filled"
-              sx={{ bgcolor: "#000" }}
-            >
-              Item added to cart!
-            </Alert>
-          </Snackbar>
-        ) : status === "Error" ? (
-          <Snackbar open={true} autoHideDuration={6000} onClose={handleClose}>
-            <Alert
-              onClose={handleClose}
-              severity="error"
-              variant="filled"
-              sx={{ width: "100%" }}
-            >
-              Something went wrong...
-            </Alert>
-          </Snackbar>
-        ) : (
-          <></>
-        )}
       </div>
     </div>
   );
