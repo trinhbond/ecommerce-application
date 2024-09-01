@@ -1,221 +1,123 @@
-import {
-  Box,
-  Button,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-  tableCellClasses,
-} from "@mui/material";
 import { useState } from "react";
-import { CircularProgress } from "@mui/material";
-import { updateQuantity } from "../utils";
 import { Link } from "react-router-dom";
 import commerce from "../commerce";
-import { Close } from "@mui/icons-material";
+import { IoCloseSharp } from "react-icons/io5";
 
 export default function CartItems({ cart }) {
   const [status, setStatus] = useState("");
 
   const handleClick = (productId) =>
-    commerce.cart
-      .remove(productId)
-      .then((res) => console.log(res))
-      .catch((error) => console.log(error));
+    commerce.cart.remove(productId).catch((error) => console.log(error));
+
+  function updateQuantity(productId, type, quantity) {
+    try {
+      setStatus("loading");
+
+      commerce.cart.update(productId, {
+        quantity:
+          type === "remove"
+            ? quantity - 1
+            : type === "add"
+            ? quantity + 1
+            : quantity,
+      });
+      setStatus("success");
+    } catch (error) {
+      setStatus("error");
+      console.log({ error });
+    }
+  }
 
   return (
-    <TableContainer
-      sx={{
-        borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
-      }}
-    >
-      <Table
-        sx={{
-          [`& .${tableCellClasses.body}`]: {
-            borderBottom: "none",
-          },
-        }}
-        size="small"
-        position="relative"
-      >
-        <TableHead>
-          <TableRow>
-            <TableCell
-              sx={{
-                fontWeight: 600,
-                paddingLeft: 0,
-                paddingRight: 0,
-              }}
-            >
-              PRODUCT
-            </TableCell>
-            <TableCell align="right"></TableCell>
-            <TableCell
-              sx={{
-                fontWeight: 600,
-                paddingLeft: 0,
-                paddingRight: 0,
-              }}
-              align="right"
-            >
-              QUANTITY
-            </TableCell>
-            <TableCell
-              sx={{
-                fontWeight: 600,
-                paddingLeft: 0,
-                paddingRight: 0,
-              }}
-              align="right"
-            >
-              SUBTOTAL
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody sx={{ position: "relative" }}>
-          {cart.line_items.map((product) => (
-            <TableRow
-              key={product.id}
-              sx={{
-                "&:last-child td, &:last-child th": { border: 0 },
-              }}
-            >
-              <TableCell
-                component="th"
-                scope="row"
-                width={"15%"}
-                sx={{
-                  paddingLeft: 0,
-                  paddingRight: 0,
-                }}
-              >
-                <Box
-                  component="img"
-                  src={product.image.url}
-                  alt={product.name}
-                  sx={{ verticalAlign: "middle" }}
-                />
-              </TableCell>
-              <TableCell align="left" sx={{ verticalAlign: "middle" }}>
-                <Box component="div">
-                  <Link to={`/${product.product_id}/${product.name}`}>
-                    <Typography>{product.name}</Typography>
-                  </Link>
-                  <Typography component="span">
-                    {product.price.formatted_with_symbol}
-                  </Typography>
-                </Box>
-              </TableCell>
-              <TableCell
-                align="right"
-                sx={{
-                  paddingLeft: 0,
-                  paddingRight: 0,
-                  verticalAlign: "middle",
-                }}
-              >
-                <Box
-                  component="div"
-                  sx={{
-                    border: "1px solid black",
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    width: 92,
-                    marginLeft: "auto",
-                    alignItems: "center",
-                    padding: "2px 10px",
-                    backgroundColor: "#000",
-                    color: "#fff",
-                  }}
+    <table className="w-full m-auto border-b border-[#e0e0e0] relative text-sm">
+      <tr className="border-b border-[#e0e0e0]">
+        <th className="text-start pb-2">product</th>
+        <th className="text-start pb-2"></th>
+        <th className="text-end pb-2 max-[560px]:hidden">quantity</th>
+        <th className="text-end pb-2">subtotal</th>
+      </tr>
+      {cart.line_items.map((product) => (
+        <tr key={product.id}>
+          <td className="py-4 w-3/12">
+            <div className="max-[360px]:min-w-[100px] max-[360px]:w-[100px] text-center">
+              <img src={product.image.url} alt={product.name} />
+            </div>
+          </td>
+          <td className="px-4 name text-start">
+            <div>
+              <Link to={`/${product.product_id}/${product.name}`}>
+                <span className="font-semibold">{product.name}</span>
+              </Link>
+              <span className="block">
+                {product.price.formatted_with_symbol}
+              </span>
+              <div className="hidden max-[560px]:inline-block max-[560px]:mt-3">
+                <div
+                  className={`${
+                    status === "loading" && "bg-[#cccccc]"
+                  } text-white bg-black hover:shadow-md flex flex-row justify-between w-[92px] ml-auto items-center py-[2px] px-[10px]`}
                 >
-                  <Button
-                    sx={{
-                      minWidth: "auto",
-                      padding: 0,
-                      fontWeight: 600,
-                    }}
+                  <button
+                    className="disabled:bg-[#cccccc] font-semibold p-0 w-min-auto"
                     onClick={() =>
-                      updateQuantity(
-                        product.id,
-                        product.quantity,
-                        "reduce",
-                        setStatus
-                      )
+                      updateQuantity(product.id, "remove", product.quantity)
                     }
                     disabled={status === "loading"}
                   >
                     &minus;
-                  </Button>
-                  <Box
-                    component="span"
-                    style={{
-                      fontWeight: 600,
-                    }}
-                  >
-                    {status === "loading" ? (
-                      <CircularProgress
-                        size="1rem"
-                        sx={{
-                          color: "#fff",
-                          padding: 0,
-                          margin: 0,
-                          verticalAlign: "middle",
-                        }}
-                      />
-                    ) : (
-                      product.quantity
-                    )}
-                  </Box>
-                  <Button
-                    sx={{
-                      minWidth: "auto",
-                      padding: 0,
-                      fontWeight: 600,
-                    }}
-                    disabled={status === "loading"}
+                  </button>
+                  <span className="font-semibold">{product.quantity}</span>
+                  <button
+                    className="disabled:bg-[#cccccc] font-semibold p-0 w-min-auto"
                     onClick={() =>
-                      updateQuantity(
-                        product.id,
-                        product.quantity,
-                        "add",
-                        setStatus
-                      )
+                      updateQuantity(product.id, "add", product.quantity)
                     }
+                    disabled={status === "loading"}
                   >
                     &#43;
-                  </Button>
-                </Box>
-              </TableCell>
-              <TableCell
-                align="right"
-                sx={{
-                  paddingLeft: 0,
-                  paddingRight: 0,
-                  verticalAlign: "middle",
-                  fontWeight: 600,
-                  position: "relative",
-                }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td className="text-end max-[560px]:hidden">
+            <div
+              className={`${
+                status === "loading" && "bg-[#cccccc]"
+              } text-white bg-black hover:shadow-md flex flex-row justify-between w-[92px] ml-auto items-center py-[2px] px-[10px]`}
+            >
+              <button
+                className="disabled:bg-[#cccccc] font-semibold p-0 w-min-auto"
+                onClick={() =>
+                  updateQuantity(product.id, "remove", product.quantity)
+                }
+                disabled={status === "loading"}
               >
-                <Box
-                  component="span"
-                  position="absolute"
-                  top={2}
-                  right={0}
-                  sx={{ cursor: "pointer" }}
-                  onClick={() => handleClick(product.id)}
-                >
-                  <Close sx={{ color: "#cdcdcd" }} />
-                </Box>
-                {product.line_total.formatted_with_symbol}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+                &minus;
+              </button>
+              <span className="font-semibold">{product.quantity}</span>
+              <button
+                className="disabled:bg-[#cccccc] font-semibold p-0 w-min-auto"
+                onClick={() =>
+                  updateQuantity(product.id, "add", product.quantity)
+                }
+                disabled={status === "loading"}
+              >
+                &#43;
+              </button>
+            </div>
+          </td>
+          <td className="w-1/4 text-end relative">
+            <span
+              className="absolute top-[8px] right-[-4px] cursor-pointer"
+              onClick={() => handleClick(product.id)}
+            >
+              <IoCloseSharp fontSize={24} color={"#cdcdcd"} />
+            </span>
+            {product.line_total.formatted_with_symbol}
+          </td>
+        </tr>
+      ))}
+    </table>
   );
 }

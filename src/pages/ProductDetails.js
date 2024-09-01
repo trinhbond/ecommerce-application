@@ -1,138 +1,92 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Box, Button, Typography } from "@mui/material";
 import Carousel from "../components/Carousel";
 import Loading from "../components/Loading";
 import commerce from "../commerce";
-import { Alert, Snackbar } from "@mui/material";
-import SaveIcon from "@mui/icons-material/Save";
+import { toast } from "react-toastify";
 
 export default function ProductDetails() {
   const { id } = useParams();
   const [status, setStatus] = useState("");
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState({});
 
   useEffect(() => {
-    commerce.products
-      .retrieve(id)
-      .then((product) => {
-        setProduct(product);
-        setLoading(false);
+    function getProductDetails() {
+      commerce.products
+        .retrieve(id)
+        .then((product) => {
+          setProduct(product);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.log({ error });
+        });
+    }
+    getProductDetails();
+  }, [id]);
+
+  useEffect(() => {
+    if (status === "success") {
+      toast.success("Item added to cart", {
+        position: "bottom-left",
+        theme: "colored",
+        toastId: "success",
+      });
+    } else if (status === "error") {
+      toast.error(`${error.statusCode}: ${error.data.error.message}`, {
+        position: "bottom-left",
+        theme: "colored",
+        toastId: "error",
+      });
+    }
+  }, [status]);
+
+  function handleClick() {
+    setStatus("loading");
+    commerce.cart
+      .add(product.id, 1)
+      .then(() => {
+        setStatus("success");
       })
       .catch((error) => {
-        console.log({ error });
+        setStatus("error");
+        setError(error);
       });
-  }, [id]);
+  }
 
   if (loading) return <Loading />;
 
-  const handleClick = () => {
-    setStatus("Loading");
-
-    try {
-      commerce.cart.add(product.id, 1).then((item) => {
-        setStatus("Complete");
-      });
-    } catch (err) {
-      setStatus("Error");
-    }
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setStatus(null);
-  };
-
   return (
-    <Box
-      padding={{
-        xs: "46px 14px",
-        sm: "46px 48px",
-        md: "46px 48px",
-        lg: "46px 48px",
-      }}
-    >
-      <Box
-        sx={{
-          width: { xs: "auto", sm: "auto", md: "auto", lg: "50%" },
-          margin: "auto",
-        }}
-      >
-        <Box>
+    <div className="py-12 px-16 max-[992px]:px-12 max-[768px]:px-8 max-[600px]:px-4 grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 gap-8">
+      <div className="m-auto xs:w-auto sm:w-auto md:w-auto lg:w-full">
+        <div>
           {product.assets.length > 1 ? (
             <Carousel assets={product.assets} />
           ) : (
-            <Box component="img" src={product.image.url} alt={product.name} />
+            <img
+              className="w-full m-auto"
+              src={product.image.url}
+              alt={product.name}
+            />
           )}
-        </Box>
-      </Box>
-      <Box
-        width={{ xs: "auto", sm: "auto", md: "auto", lg: "50%" }}
-        margin="auto"
-        padding="24px 0"
-        display="flex"
-        flexDirection="column"
-        gap={3}
-      >
-        <Box>
-          <Typography fontWeight={700}>{product.name}</Typography>
-          <Box component="span" m={0}>
-            {product.price.formatted_with_symbol}
-          </Box>
-          <Box component="p">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </Box>
-        </Box>
-        <Button
-          onClick={() => handleClick()}
-          color="secondary"
-          loading={status === "Loading"}
-          loadingPosition="start"
-          startIcon={status === "Loading" && <SaveIcon />}
-          variant="contained"
-          disableRipple={true}
-          sx={{
-            width: 150,
-            padding: "8px 24px",
-          }}
+        </div>
+      </div>
+      <div className="m-auto xs:w-auto sm:w-auto md:w-auto lg:w-full flex flex-col gap-4">
+        <div>
+          <p className="font-bold text-2xl">{product.name}</p>
+          <span>{product.price.formatted_with_symbol}</span>
+        </div>
+        <p dangerouslySetInnerHTML={{ __html: product.description }} />
+        <button
+          className={`disabled:bg-[#cccccc] bg-black text-white font-semibold w-[150px] py-[8px] px-[24px]`}
+          onClick={handleClick}
+          disabled={status === "loading"}
         >
-          <span>{status === "Loading" ? "Loading..." : "Add to cart"}</span>
-        </Button>
-
-        {status === "Complete" ? (
-          <Snackbar open={true} autoHideDuration={6000} onClose={handleClose}>
-            <Alert
-              onClose={handleClose}
-              variant="filled"
-              sx={{ bgcolor: "#000" }}
-            >
-              Item added to cart!
-            </Alert>
-          </Snackbar>
-        ) : status === "Error" ? (
-          <Snackbar open={true} autoHideDuration={6000} onClose={handleClose}>
-            <Alert
-              onClose={handleClose}
-              severity="error"
-              variant="filled"
-              sx={{ width: "100%" }}
-            >
-              Something went wrong...
-            </Alert>
-          </Snackbar>
-        ) : (
-          <></>
-        )}
-      </Box>
-    </Box>
+          add to cart
+        </button>
+      </div>
+    </div>
   );
 }
