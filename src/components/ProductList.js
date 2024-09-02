@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 
 export default function ProductList({ products, onClick }) {
-  console.log(products);
-
   return (
     <div className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1">
       {products
