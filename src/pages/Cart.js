@@ -10,6 +10,10 @@ export default function Cart() {
   const [isCleared, setIsCleared] = useState(true);
 
   useEffect(() => {
+    document.title = "Your Shopping Cart | urbanthreads";
+  }, []);
+
+  useEffect(() => {
     commerce.cart
       .retrieve()
       .then((cart) => {
